@@ -1,0 +1,365 @@
+/* ================================
+   Locale Hero
+   ================================ */
+
+.locale-hero {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 80vh;
+  max-height: 900px;
+  overflow: hidden;
+  margin-bottom: 3rem;
+}
+
+/* Make all Swiper layers fill .locale-hero */
+.locale-hero .swiper,
+.locale-hero .swiper-wrapper,
+.locale-hero .swiper-slide {
+  height: 100% !important;
+}
+
+/* Images behave like background-size: cover */
+.locale-hero .swiper-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Centered overlay content */
+
+.locale-center-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 1.5rem;
+}
+
+.locale-info-slide {
+  position: absolute; // keep absolute so slides stack
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  color: #fff;
+}
+
+.locale-info-slide h1 {
+  font-family: "Abril Fatface", cursive;
+  font-size: clamp(3rem, 6vw, 5rem);
+  margin-bottom: 0.75rem;
+}
+
+.locale-info-slide .subtitle {
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  max-width: 40rem;
+  margin: 0 auto 1.75rem;
+}
+
+/* Buttons row */
+
+.locale-info-slide__actions {
+  display: inline-flex;
+  gap: 1rem;
+}
+
+.locale-info-slide .btn {
+  pointer-events: auto;
+}
+
+/* "Back to hero" inline link above grid */
+
+.locales-back-to-hero {
+  margin-bottom: 1.5rem;
+  font-size: 0.85rem;
+  padding: 0.35rem 0.9rem;
+}
+
+/* ================================
+   Browse All Locales section
+   ================================ */
+
+.all-locales-tagline {
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+  color: #7a6c65;
+}
+
+/* Search Box + Suggestions */
+
+.locale-search {
+  position: relative;
+  margin: 1rem 0 1.5rem;
+}
+
+#locale-inline-search {
+  width: 100%;
+  max-width: 460px;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border-radius: 999px;
+  border: 1px solid #ddd;
+}
+
+.locale-search__suggestions {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  z-index: 20;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  max-height: 240px;
+  overflow-y: auto;
+  display: none;
+}
+
+.locale-search__suggestion {
+  display: block;
+  width: 100%;
+  padding: 0.6rem 1rem;
+  text-align: left;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+.locale-search__suggestion:hover {
+  background: #f5f5f5;
+}
+
+/* A–Z Filter */
+
+.az-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 2rem;
+}
+
+.az-filter__btn {
+  border: 1px solid #ddd;
+  background: #fff;
+  border-radius: 999px;
+  padding: 0.25rem 0.6rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.az-filter__btn.is-active {
+  background: #222;
+  color: #fff;
+  border-color: #222;
+}
+
+/* Locale Grid */
+
+.locale-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 30px;
+  margin-top: 1rem;
+}
+
+.locale-card {
+  text-decoration: none;
+  color: inherit;
+}
+
+.locale-card__image {
+  width: 100%;
+  height: 150px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 10px;
+}
+
+.locale-card__title {
+  margin-top: 10px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* ================================
+   Floating scroll-to-hero button
+   ================================ */
+
+.scroll-to-hero-btn {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #c07f63;
+  color: #fff;
+  font-size: 22px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  outline: none !important;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Nuke browser focus ring + keep a soft custom one */
+.scroll-to-hero-btn:focus,
+.scroll-to-hero-btn:focus-visible {
+  outline: none !important;
+  box-shadow:
+    0 0 0 3px rgba(255, 255, 255, 0.45),
+    0 8px 20px rgba(0, 0, 0, 0.18);
+}
+
+/* Firefox inner focus fix */
+.scroll-to-hero-btn::-moz-focus-inner {
+  border: 0;
+}
+
+.scroll-to-hero-btn.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ==================================
+   Swiper nav buttons – glassy bubbles
+   ================================== */
+
+.locale-hero .swiper-button-next,
+.locale-hero .swiper-button-prev {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.35); // translucent dark bubble
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  box-shadow:
+    0 8px 18px rgba(0, 0, 0, 0.25),
+    0 3px 6px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s ease;
+  outline: none;
+}
+
+.locale-hero .swiper-button-next::after,
+.locale-hero .swiper-button-prev::after {
+  font-size: 22px;
+  color: #fff;
+}
+
+.locale-hero .swiper-button-next:hover,
+.locale-hero .swiper-button-prev:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    0 10px 22px rgba(0, 0, 0, 0.3),
+    0 4px 8px rgba(0, 0, 0, 0.25);
+}
+
+.locale-hero .swiper-button-next:active,
+.locale-hero .swiper-button-prev:active {
+  transform: translateY(1px) scale(0.97);
+  box-shadow:
+    0 4px 10px rgba(0, 0, 0, 0.3),
+    inset 0 2px 4px rgba(255, 255, 255, 0.15);
+}
+/* ================================
+   Child Locale Banners (Single Locale)
+   ================================ */
+
+.child-locale-section {
+  margin-top: 3rem;
+}
+
+.child-locale-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem; // vertical space between banners
+}
+
+/* wrapper so we can control width/margins if needed */
+.child-banner-wrapper {
+  width: 100%;
+}
+
+/* the actual banner card */
+.child-banner {
+  display: block;
+  position: relative;
+  height: 220px;
+  border-radius: 16px;
+  overflow: hidden;
+  text-decoration: none;
+  color: #fff;
+
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+/* background image layer */
+.child-banner__bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.75);
+}
+
+/* text overlay */
+.child-banner__content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1.5rem 1.75rem;
+  z-index: 2;
+}
+
+/* title + subtitle */
+
+.child-banner__title {
+  font-family: "Abril Fatface", cursive;
+  font-size: clamp(1.5rem, 2.6vw, 2rem);
+  margin: 0 0 0.25rem;
+}
+
+.child-banner__subtitle {
+  margin: 0;
+  font-size: 0.98rem;
+  line-height: 1.5;
+  opacity: 0.9;
+}
+
+/* hover lift */
+
+.child-banner:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.16);
+}
+/* Pastry section on single-locale pages */
+.pastry-case-section {
+  margin-top: 3rem;
+}
+
+.pastry-case-section .headline {
+  margin-bottom: 1.5rem;
+}
