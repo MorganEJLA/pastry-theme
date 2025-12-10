@@ -71,7 +71,7 @@ abbr[title] {
   border-bottom: none; /* 1 */
   text-decoration: underline; /* 2 */
   -webkit-text-decoration: underline dotted;
-          text-decoration: underline dotted; /* 2 */
+  text-decoration: underline dotted; /* 2 */
 }
 /**
  * Add the correct font weight in Chrome, Edge, and Safari.
@@ -142,7 +142,8 @@ textarea {
  * 1. Show the overflow in Edge.
  */
 button,
-input { /* 1 */
+input {
+  /* 1 */
   overflow: visible;
 }
 /**
@@ -150,7 +151,8 @@ input { /* 1 */
  * 1. Remove the inheritance of text transform in Firefox.
  */
 button,
-select { /* 1 */
+select {
+  /* 1 */
   text-transform: none;
 }
 /**
@@ -279,16 +281,70 @@ template {
 [hidden] {
   display: none;
 }
-.glide{position:relative;width:100%;box-sizing:border-box}
-.glide *{box-sizing:inherit}
-.glide__track{overflow:hidden}
-.glide__slides{position:relative;width:100%;list-style:none;backface-visibility:hidden;transform-style:preserve-3d;touch-action:pan-Y;overflow:hidden;margin:0;padding:0;white-space:nowrap;display:flex;flex-wrap:nowrap;will-change:transform}
-.glide__slides--dragging{-webkit-user-select:none;-moz-user-select:none;user-select:none}
-.glide__slide{width:100%;height:100%;flex-shrink:0;white-space:normal;-webkit-user-select:none;-moz-user-select:none;user-select:none;-webkit-touch-callout:none;-webkit-tap-highlight-color:transparent}
-.glide__slide a{-webkit-user-select:none;user-select:none;-webkit-user-drag:none;-moz-user-select:none;-ms-user-select:none}
-.glide__arrows{-webkit-touch-callout:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}
-.glide__bullets{-webkit-touch-callout:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}
-.glide--rtl{direction:rtl}
+.glide {
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+}
+.glide * {
+  box-sizing: inherit;
+}
+.glide__track {
+  overflow: hidden;
+}
+.glide__slides {
+  position: relative;
+  width: 100%;
+  list-style: none;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  touch-action: pan-Y;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  white-space: nowrap;
+  display: flex;
+  flex-wrap: nowrap;
+  will-change: transform;
+}
+.glide__slides--dragging {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+.glide__slide {
+  width: 100%;
+  height: 100%;
+  flex-shrink: 0;
+  white-space: normal;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.glide__slide a {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+.glide__arrows {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+.glide__bullets {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+.glide--rtl {
+  direction: rtl;
+}
 /*# sourceMappingURL=glide.core.min.css.map */
 /* SASS and Global'ish Stuff */
 body {
@@ -673,12 +729,12 @@ li {
   transform: scale(0.2);
   opacity: 0;
 }
-.like-box[data-exists=yes] .fa-heart {
+.like-box[data-exists="yes"] .fa-heart {
   transform: scale(1);
   visibility: visible;
   opacity: 1;
 }
-.like-box[data-exists=yes] .fa-heart-o {
+.like-box[data-exists="yes"] .fa-heart-o {
   visibility: hidden;
   opacity: 0;
 }
@@ -686,7 +742,11 @@ li {
 body.login .button-primary {
   background-color: #ee826c;
   border-color: rgb(234.4134146341, 103.6280487805, 76.9865853659);
-  text-shadow: 0 -1px 1px rgb(232.6201219512, 90.4420731707, 61.4798780488), 1px 0 1px rgb(232.6201219512, 90.4420731707, 61.4798780488), 0 1px 1px rgb(232.6201219512, 90.4420731707, 61.4798780488), -1px 0 1px rgb(232.6201219512, 90.4420731707, 61.4798780488);
+  text-shadow:
+    0 -1px 1px rgb(232.6201219512, 90.4420731707, 61.4798780488),
+    1px 0 1px rgb(232.6201219512, 90.4420731707, 61.4798780488),
+    0 1px 1px rgb(232.6201219512, 90.4420731707, 61.4798780488),
+    -1px 0 1px rgb(232.6201219512, 90.4420731707, 61.4798780488);
   box-shadow: 0 1px 0 rgb(230.8268292683, 77.256097561, 45.9731707317);
 }
 body.login .button-primary:active,
@@ -694,7 +754,11 @@ body.login .button-primary:focus,
 body.login .button-primary:hover {
   background-color: rgb(234.7720731707, 106.2652439024, 80.0879268293);
   border-color: #ee826c;
-  text-shadow: 0 -1px 1px rgb(230.8268292683, 77.256097561, 45.9731707317), 1px 0 1px rgb(230.8268292683, 77.256097561, 45.9731707317), 0 1px 1px rgb(230.8268292683, 77.256097561, 45.9731707317), -1px 0 1px rgb(230.8268292683, 77.256097561, 45.9731707317);
+  text-shadow:
+    0 -1px 1px rgb(230.8268292683, 77.256097561, 45.9731707317),
+    1px 0 1px rgb(230.8268292683, 77.256097561, 45.9731707317),
+    0 1px 1px rgb(230.8268292683, 77.256097561, 45.9731707317),
+    -1px 0 1px rgb(230.8268292683, 77.256097561, 45.9731707317);
   box-shadow: 0 1px 0 rgb(229.0335365854, 64.0701219512, 30.4664634146);
 }
 body.login {
@@ -955,7 +1019,10 @@ body.login {
   padding-top: 58px;
   opacity: 0;
   transform: translateY(-20%);
-  transition: opacity 0.3s ease-out, visibility 0.3s ease-out, transform 0.3s ease-out;
+  transition:
+    opacity 0.3s ease-out,
+    visibility 0.3s ease-out,
+    transform 0.3s ease-out;
   padding-bottom: 20px;
 }
 .site-header__menu--active {
@@ -1321,7 +1388,10 @@ body.login {
   visibility: hidden;
   opacity: 0;
   transform: scale(1.09);
-  transition: opacity 0.3s, transform 0.3s, visibility 0.3s;
+  transition:
+    opacity 0.3s,
+    transform 0.3s,
+    visibility 0.3s;
   box-sizing: border-box;
 }
 .search-overlay p {
@@ -1438,7 +1508,9 @@ body.admin-bar .search-overlay {
 }
 .professor-card__image {
   display: block;
-  transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+  transition:
+    opacity 0.3s ease-out,
+    transform 0.3s ease-out;
 }
 .professor-card:hover .professor-card__image {
   opacity: 0.8;
@@ -1627,7 +1699,7 @@ body.admin-bar .search-overlay {
   left: 0;
   position: absolute;
   padding: 14px 0 11px 0;
-  color: #FFF;
+  color: #fff;
   border-radius: 50%;
   background-color: #a9c8b9;
   width: 80px;
@@ -1684,7 +1756,8 @@ body.admin-bar .search-overlay {
 .page-links li:first-child {
   border-top: none;
 }
-.page-links__active, .page-links .current_page_item {
+.page-links__active,
+.page-links .current_page_item {
   text-align: center;
   background-color: rgb(245.9934230769, 232.7592692308, 216.2165769231);
   color: #a9c8b9;
@@ -1715,7 +1788,7 @@ body.admin-bar .search-overlay {
 .link-list li {
   padding: 1rem 0;
   font-size: 1.5rem;
-  border-bottom: 1px dotted #DEDEDE;
+  border-bottom: 1px dotted #dedede;
 }
 .search-overlay .link-list li {
   font-size: 1.3rem;
@@ -1771,7 +1844,7 @@ body.admin-bar .search-overlay {
   background-color: rgb(153.4468085106, 190.0531914894, 172.3404255319);
 }
 .post-item {
-  border-bottom: 1px dotted #DEDEDE;
+  border-bottom: 1px dotted #dedede;
   padding-bottom: 1.7rem;
   margin-bottom: 1.7rem;
 }
@@ -1802,7 +1875,7 @@ body.admin-bar .search-overlay {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   display: block;
 }
 /* Centered overlay content */
@@ -1906,7 +1979,10 @@ body.admin-bar .search-overlay {
   padding: 0.25rem 0.6rem;
   font-size: 0.85rem;
   cursor: pointer;
-  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease,
+    border-color 0.15s ease;
 }
 .az-filter__btn.is-active {
   background: #222;
@@ -1967,7 +2043,9 @@ body.admin-bar .search-overlay {
 .scroll-to-hero-btn:focus,
 .scroll-to-hero-btn:focus-visible {
   outline: none !important;
-  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.45), 0 8px 20px rgba(0, 0, 0, 0.18);
+  box-shadow:
+    0 0 0 3px rgba(255, 255, 255, 0.45),
+    0 8px 20px rgba(0, 0, 0, 0.18);
 }
 /* Firefox inner focus fix */
 .scroll-to-hero-btn::-moz-focus-inner {
@@ -1988,7 +2066,9 @@ body.admin-bar .search-overlay {
   background: rgba(0, 0, 0, 0.35);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25), 0 3px 6px rgba(0, 0, 0, 0.2);
+  box-shadow:
+    0 8px 18px rgba(0, 0, 0, 0.25),
+    0 3px 6px rgba(0, 0, 0, 0.2);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2003,12 +2083,16 @@ body.admin-bar .search-overlay {
 .locale-hero .swiper-button-next:hover,
 .locale-hero .swiper-button-prev:hover {
   transform: translateY(-1px);
-  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.3), 0 4px 8px rgba(0, 0, 0, 0.25);
+  box-shadow:
+    0 10px 22px rgba(0, 0, 0, 0.3),
+    0 4px 8px rgba(0, 0, 0, 0.25);
 }
 .locale-hero .swiper-button-next:active,
 .locale-hero .swiper-button-prev:active {
   transform: translateY(1px) scale(0.97);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3), inset 0 2px 4px rgba(255, 255, 255, 0.15);
+  box-shadow:
+    0 4px 10px rgba(0, 0, 0, 0.3),
+    inset 0 2px 4px rgba(255, 255, 255, 0.15);
 }
 /* ================================
    Child Locale Banners (Single Locale)
@@ -2035,7 +2119,9 @@ body.admin-bar .search-overlay {
   text-decoration: none;
   color: #fff;
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
-  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease;
 }
 /* background image layer */
 .child-banner__bg {
@@ -2100,8 +2186,12 @@ body.admin-bar .search-overlay {
   overflow: hidden;
   position: relative;
   text-decoration: none;
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.16), 0 18px 30px rgba(0, 0, 0, 0.1);
-  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  box-shadow:
+    0 30px 60px rgba(0, 0, 0, 0.16),
+    0 18px 30px rgba(0, 0, 0, 0.1);
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
   background: #000;
 }
 /* Fixed card height like your CodePen */
@@ -2115,7 +2205,7 @@ body.admin-bar .search-overlay {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   display: block;
   transition: transform 0.6s ease;
 }
@@ -2128,7 +2218,9 @@ body.admin-bar .search-overlay {
   background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.1));
   opacity: 0;
   transform: translateY(16px);
-  transition: opacity 0.35s ease, transform 0.35s ease;
+  transition:
+    opacity 0.35s ease,
+    transform 0.35s ease;
 }
 .pastry-card__title {
   font-size: 1.1rem;
@@ -2143,7 +2235,9 @@ body.admin-bar .search-overlay {
 }
 .pastry-card__link:hover {
   transform: translateY(-8px);
-  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.22), 0 22px 40px rgba(0, 0, 0, 0.14);
+  box-shadow:
+    0 40px 80px rgba(0, 0, 0, 0.22),
+    0 22px 40px rgba(0, 0, 0, 0.14);
 }
 .pastry-card__link:hover .pastry-card__image {
   transform: scale(1.06);
@@ -2151,6 +2245,25 @@ body.admin-bar .search-overlay {
 .pastry-card__link:hover .pastry-card__overlay {
   opacity: 1;
   transform: translateY(0);
+}
+/* Force-hide the mobile menu trigger on desktop */
+@media (min-width: 960px) {
+  .site-header__menu-trigger {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+}
+.search-overlay__backup {
+  margin-top: 20px;
+  text-align: right;
+  font-size: 0.9rem;
+}
+
+.search-overlay__backup a {
+  color: #fff;
+  text-decoration: underline;
 }
 
 /*# sourceMappingURL=style-index.css.map*/

@@ -6426,6 +6426,11 @@ class Search {
 
         <div class="container">
           <div id="search-overlay__results"></div>
+          <div class="search-overlay__backup">
+            <a href="${pastryData.root_url}/search">
+              View full search page →
+            </a>
+          </div>
         </div>
       </div>
     `);
