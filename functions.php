@@ -180,11 +180,14 @@ add_action('pre_get_posts', 'pastry_adjust_queries');
 // 6. SEARCH SYNONYMS (e.g. Azores → Açores)
 // =================================================================================
 add_filter('posts_search', 'pastry_synonym_search');
+add_filter('posts_search', 'pastry_synonym_search');
 function pastry_synonym_search($search) {
 
-    if (is_search()) {
-        $query = sanitize_text_field($_GET['s']);
+    global $wpdb;
 
+    if (is_search() && !empty(get_query_var('s'))) {
+        $original_query = get_query_var('s'); // Get the original term from the URL
+        $sanitized_query = sanitize_text_field($original_query);
         // Add more synonyms as needed
         $synonyms = array(
 
@@ -358,21 +361,57 @@ function pastry_synonym_search($search) {
             'cajun' => 'cajun'
         );
 
+        // Find the correct replacement term
+        $replacement_term = $original_query;
+        if (array_key_exists(strtolower($sanitized_query), $synonyms)) {
+            $replacement_term = $synonyms[strtolower($sanitized_query)];
+        }
 
-        foreach ($synonyms as $word => $synonym) {
-            if (strtolower($query) === $word) {
-                global $wpdb;
-                $search = " AND (
-                    {$wpdb->posts}.post_title LIKE '%$synonym%'
-                    OR {$wpdb->posts}.post_content LIKE '%$synonym%'
-                    OR {$wpdb->posts}.post_title LIKE '%$word%'
-                    OR {$wpdb->posts}.post_content LIKE '%$word%'
-                ) ";
-            }
+        // If the original term is different from the preferred term (i.e., we have a synonym)
+        if ($original_query !== $replacement_term) {
+
+            // 1. Find the search fragment in the SQL string. It looks like:
+            // AND ((($wpdb->posts.post_title LIKE '%{$original_query}%') OR ...))
+
+            // 2. Escape the terms for SQL safety
+            $original_like = '%' . $wpdb->esc_like($original_query) . '%';
+            $replacement_like = '%' . $wpdb->esc_like($replacement_term) . '%';
+
+            // 3. Create a combined search condition: (Term LIKE 'Original%' OR Term LIKE 'Replacement%')
+            // Note: We use the existing SQL structure for safety and portability.
+
+            // The logic below assumes a standard WordPress search query structure.
+            // We search for the original search condition and wrap it to include the synonym.
+
+            // The default search condition to find/replace:
+            $search_pattern = "LIKE '{$original_like}'";
+
+            // The replacement search condition that includes both terms:
+            $search_replacement = "LIKE '{$original_like}' OR {$wpdb->posts}.post_title LIKE '{$replacement_like}' OR {$wpdb->posts}.post_content LIKE '{$replacement_like}'";
+
+            // Apply the replacement across the SQL string
+            // We use str_replace to inject the OR condition into the existing AND conditions.
+            $search = str_replace($search_pattern, $search_replacement, $search);
+
         }
     }
 
-    return $search;
+    return $search; // Always return the (potentially modified) SQL search fragment
 }
-
+function uds_enqueue_swiper_assets() {
+    if ( is_page( 'professors' ) || is_page( 'artisans' ) ) {
+        wp_enqueue_style(
+            'swiper-css',
+            'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css'
+        );
+        wp_enqueue_script(
+            'swiper-js',
+            'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js',
+            array(),
+            null,
+            true
+        );
+    }
+}
+add_action( 'wp_enqueue_scripts', 'uds_enqueue_swiper_assets' );
 ?>

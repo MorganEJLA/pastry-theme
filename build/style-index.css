@@ -1079,7 +1079,7 @@ body.login {
 }
 @media (min-width: 960px) {
   .site-header__menu-trigger {
-    display: none;
+    display: none !important;
   }
 }
 .site-header__util {
@@ -2177,8 +2177,8 @@ body.admin-bar .search-overlay {
 }
 /* Each card takes up a fixed-ish width */
 .pastry-card {
-  flex: 0 1 320px;
-  max-width: 340px;
+  flex: 0 1 240px;
+  max-width: 260px;
 }
 .pastry-card__link {
   display: block;
@@ -2197,7 +2197,7 @@ body.admin-bar .search-overlay {
 /* Fixed card height like your CodePen */
 .pastry-card__image-wrap {
   width: 100%;
-  height: 260px;
+  height: 180px;
   position: relative;
   overflow: hidden;
 }
@@ -2246,24 +2246,73 @@ body.admin-bar .search-overlay {
   opacity: 1;
   transform: translateY(0);
 }
-/* Force-hide the mobile menu trigger on desktop */
-@media (min-width: 960px) {
-  .site-header__menu-trigger {
-    display: none !important;
-    visibility: hidden !important;
-    opacity: 0 !important;
-    pointer-events: none !important;
-  }
-}
-.search-overlay__backup {
-  margin-top: 20px;
-  text-align: right;
-  font-size: 0.9rem;
+/* artisans carousel */
+/* Section spacing */
+.artisan-swiper-section {
+  margin-top: 4rem;
+  margin-bottom: 4rem;
 }
 
-.search-overlay__backup a {
+/* Make slides look like cards */
+.artisan-card {
+  background: #ffffff;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow:
+    0 18px 45px rgba(0, 0, 0, 0.16),
+    0 6px 18px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+.artisan-card__image {
+  width: 100%;
+  height: 220px;
+  background-size: cover;
+  background-position: center;
+}
+
+.artisan-card__body {
+  padding: 2.5rem 1.75rem;
+  text-align: center;
+}
+
+.artisan-card__button {
+  display: inline-block;
+  margin-top: 0.85rem;
+  padding: 0.65rem 2.5rem;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  background: #ee964b;
+  color: #ffffff;
+}
+
+/* Swiper navigation styled like a circular control */
+.professorSwiper .professor-nav {
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  background: #ee826c;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+}
+
+.professorSwiper .professor-nav::after {
+  font-size: 18px;
   color: #fff;
-  text-decoration: underline;
+}
+
+/* Position arrows vertically centered on the slider */
+.professorSwiper .professor-nav--prev {
+  left: 0;
+}
+
+.professorSwiper .professor-nav--next {
+  right: 0;
 }
 
 /*# sourceMappingURL=style-index.css.map*/

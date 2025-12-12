@@ -6,6 +6,14 @@ while(have_posts()){
     the_post(); ?>
     <?php pageBanner(); ?>
     <div class="container container--narrow page-section">
+        <div class="metabox metabox--position-up metabox--with-home-link">
+  <p>
+    <a class="metabox__blog-home-link" href="<?php echo site_url('/dessert-library/artisans/'); ?>">
+      <i class="fa fa-home" aria-hidden="true"></i> Back to Artisans
+    </a>
+    <span class="metabox__main"><?php the_title(); ?></span>
+  </p>
+</div>
 
         <div class="generic-content">
         <div class="row group">

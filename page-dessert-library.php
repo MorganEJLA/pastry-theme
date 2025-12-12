@@ -8,7 +8,7 @@ get_header();
 
 while(have_posts()){
     the_post();
-    pageBanner(); // Assuming this is a custom function defined in your theme
+    pageBanner();
 ?>
 
 <div class="container container--narrow page-section">
@@ -63,12 +63,13 @@ if ($theParent or $testArray) { ?>
 
    <?php the_content(); // Displays content entered in the WordPress editor ?>
 
-   <p class="t-center" style="margin-top: 20px; margin-bottom: 40px;">
-        <a href="<?php echo get_post_type_archive_link('pastry-case'); ?>"
-            class="btn btn--large btn--blue">
-            Explore the Entire Pastry Case
-        </a>
-    </p>
+  <p class="t-center" style="margin-top: 20px; margin-bottom: 40px;">
+    <a href="<?php echo site_url('/dessert-library/pastry-case/'); ?>"
+        class="btn btn--large btn--blue">
+        Explore the Entire Pastry Case
+    </a>
+</p>
+
 
 
    </div>
