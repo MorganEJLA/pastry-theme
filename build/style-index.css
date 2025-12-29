@@ -2160,6 +2160,82 @@ body.admin-bar .search-overlay {
   transform: translateY(-2px);
   box-shadow: 0 18px 40px rgba(0, 0, 0, 0.16);
 }
+/* 🔥 Force readable dessert label on pastry pages */
+
+.page-banner--pastry .page-banner__content {
+  position: relative;
+  max-width: 260px;
+  margin-left: 8%;
+  padding: 1.1rem 1.6rem;
+
+  /* hard overrides */
+ 
+  backdrop-filter: blur(6px);
+  border-radius: 26px;
+  text-align: left;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.3);
+}
+
+/* Make absolutely sure the text is white + shadowed */
+.page-banner--pastry .page-banner__title,
+.page-banner--pastry .page-banner__intro p {
+  color: #ffffff !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6) !important;
+  margin: 0;
+}
+
+.page-banner--pastry .page-banner__title {
+  font-size: 2.1rem;
+  line-height: 1.1;
+}
+
+.page-banner--pastry .page-banner__intro p {
+  margin-top: 0.4rem;
+  font-size: 0.95rem;
+  opacity: 0.98;
+}
+.page-banner--pastry::before {
+  content: none !important;
+}
+
+.page-banner--pastry .page-banner__bg-image {
+  filter: none !important;
+  opacity: 1 !important;
+}
+.page-banner.page-banner--pastry {
+  min-height: 280px !important;
+  padding: 5rem 2rem;
+}
+/* Target ONLY pastry banners */
+.page-banner--pastry {
+  position: relative;
+  min-height: 520px; /* keep your taller banner */
+  padding: 0; /* remove top padding so content positioning is crisp */
+  display: block; /* prevent flex override from messing placement */
+}
+
+/* Unify banner badge */
+.page-banner--pastry .page-banner__content {
+  position: absolute;
+  bottom: 3rem;
+  left: 3rem;
+
+  background: rgba(66, 40, 27, 0.10); /* chocolate brown translucent */
+  backdrop-filter: blur(4px);
+  padding: 3rem 3.5rem;
+  border-radius: 32px;
+  max-width: 780px;
+  z-index: 10;
+  color: #fff;
+}
+
+/* Remove dark pill mistakenly applied to subtitle */
+.page-banner--pastry .page-banner__content > div {
+  background: transparent !important;
+  padding: 0 !important;
+  margin-top: 1rem;
+}
+
 /* Section wrapper */
 .artisan-swiper-section {
   margin: 3rem 0 4rem;
