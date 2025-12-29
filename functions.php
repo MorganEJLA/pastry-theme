@@ -27,7 +27,7 @@ function pageBanner($args = []) {
     if (!array_key_exists('title', $args) || !$args['title']) {
         $args['title'] = get_the_title();
 
-        // ARCHIVE TITLE FALLBACK: Use a more appropriate title if viewing an archive.
+        // ARCHIVE TITLE FALLBACK
         if (is_archive()) {
             $args['title'] = post_type_archive_title('', false);
         }
@@ -35,29 +35,48 @@ function pageBanner($args = []) {
 
     // SUBTITLE
     if (!array_key_exists('subtitle', $args) || !$args['subtitle']) {
-        $args['subtitle'] = get_field('page_banner_subtitle');
+
+        // Optional: special field for desserts, falls back to normal subtitle
+        if (is_singular('pastry_case') && get_field('dessert_tagline')) {
+            $args['subtitle'] = get_field('dessert_tagline');
+        } else {
+            $args['subtitle'] = get_field('page_banner_subtitle');
+        }
     }
 
     // PHOTO
     if (!array_key_exists('photo', $args) || !$args['photo']) {
 
-
         if (is_post_type_archive('pastry_case')) {
 
+            // Archive hero image
             $args['photo'] = get_theme_file_uri('/images/chocolatier-banner.jpg');
 
+        } elseif (is_singular('pastry_case') && has_post_thumbnail()) {
+
+            // 🔸 Single pastry: use featured image by default
+            $args['photo'] = get_the_post_thumbnail_url(get_the_ID(), 'pageBanner');
 
         } elseif (get_field('page_banner_image')) {
+
+            // Generic page banner image (ACF)
             $args['photo'] = get_field('page_banner_image')['sizes']['pageBanner'];
 
         } else {
 
+            // Global fallback
             $args['photo'] = get_theme_file_uri('/images/chocolatier-banner.jpg');
         }
     }
+
+    // 🔸 Extra class for pastry singles
+    $extra_class = '';
+    if (is_singular('pastry_case')) {
+        $extra_class = ' page-banner--pastry';
+    }
     ?>
 
-    <div class="page-banner">
+    <div class="page-banner<?php echo $extra_class; ?>">
       <div
         class="page-banner__bg-image"
         style="background-image: url(<?php echo esc_url($args['photo']); ?>)"
@@ -67,15 +86,16 @@ function pageBanner($args = []) {
         <h1 class="page-banner__title"><?php echo wp_kses_post($args['title']); ?></h1>
 
         <?php if ($args['subtitle']) : ?>
-        <div class="page-banner__intro">
-          <p><?php echo wp_kses_post($args['subtitle']); ?></p>
-        </div>
+          <div class="page-banner__intro">
+            <p><?php echo wp_kses_post($args['subtitle']); ?></p>
+          </div>
         <?php endif; ?>
       </div>
-      </div>
+    </div>
 
     <?php
 }
+
 
 
 // =====================================================================

@@ -2,7 +2,7 @@
 get_header();
 
 pageBanner(array(
-  'title'    => 'Pastry Professors',
+  'title'    => 'Artisans of Universo da Doçura',
   'subtitle' => 'Meet the artisans, storytellers, and dessert guardians of Universo da Doçura.'
 ));
 ?>
@@ -17,7 +17,7 @@ pageBanner(array(
     </p>
   </div>
   <?php
-  
+
   while ( have_posts() ) : the_post(); ?>
     <div class="generic-content">
       <?php the_content(); ?>
@@ -35,7 +35,7 @@ pageBanner(array(
   if ( $professors->have_posts() ) : ?>
 
     <div class="artisan-swiper-section">
-      <h2 class="headline headline--medium">Pastry Professors</h2>
+
 
       <div class="swiper professorSwiper">
         <div class="swiper-wrapper">

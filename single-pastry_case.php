@@ -3,28 +3,27 @@ get_header();
 
 while (have_posts()) {
     the_post();
+
+    // Grab related locales once so we can use them in multiple places
+    $relatedLocales = get_field('related_locales'); // ACF relationship field
     ?>
 
     <!-- Page Banner -->
-   <?php pageBanner(); ?>
+    <?php pageBanner(); ?>
 
     <div class="container container--narrow page-section">
 
         <!-- Metabox -->
-       <div class="metabox metabox--position-up metabox--with-home-link">
+        <div class="metabox metabox--position-up metabox--with-home-link">
             <p>
                 <?php
-                // 1. Get the array of related Locales (***CONFIRM FIELD NAME***)
-                //    Assuming your ACF Relationship field name is 'related_locale'
-                $relatedLocales = get_field('related_locale');
-
                 if ($relatedLocales) {
-                    // ACF returns an array of post objects. Use the first one found.
+                    // Use the first related locale in the metabox link
                     $locale = $relatedLocales[0];
                     ?>
                     <a class="metabox__blog-home-link" href="<?php echo get_the_permalink($locale); ?>">
-                        <i class="fa fa-map-marker" aria-hidden="true"></i>
-                        Locale: <?php echo get_the_title($locale); ?>
+
+                         <?php echo get_the_title($locale); ?>
                     </a>
                     <span class="metabox__main"><?php the_title(); ?></span>
 
@@ -41,7 +40,27 @@ while (have_posts()) {
         <!-- Main Content -->
         <div class="generic-content">
             <?php the_content(); ?>
+
+            <?php
+            // Regional Roots section (like on the Artisans single)
+            if ($relatedLocales) {
+                echo '<hr class="section-break">';
+                echo '<h3 class="headline headline--smaller">Regional Roots</h3>';
+                echo '<ul class="link-list min-list">';
+
+                foreach ($relatedLocales as $locale) { ?>
+                    <li>
+                        <a href="<?php echo get_the_permalink($locale); ?>">
+                            <?php echo get_the_title($locale); ?>
+                        </a>
+                    </li>
+                <?php }
+
+                echo '</ul>';
+            }
+            ?>
         </div>
+    </div>
+
 <?php }
 get_footer();
-?>

@@ -5,6 +5,9 @@
   left: 0;
   right: 0;
   padding: 20px 0;
+   // ✨ new bits
+  background: rgba(0, 0, 0, 0.28);   // slightly dark, semi-transparent
+  backdrop-filter: blur(8px);        // frosted glass effect (optional)
 
   &__avatar {
     position: absolute;

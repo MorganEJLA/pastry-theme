@@ -998,6 +998,8 @@ body.login {
   left: 0;
   right: 0;
   padding: 20px 0;
+  background: rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(8px);
 }
 .site-header__avatar {
   position: absolute;
@@ -1079,7 +1081,7 @@ body.login {
 }
 @media (min-width: 960px) {
   .site-header__menu-trigger {
-    display: none !important;
+    display: none;
   }
 }
 .site-header__util {
@@ -2158,6 +2160,125 @@ body.admin-bar .search-overlay {
   transform: translateY(-2px);
   box-shadow: 0 18px 40px rgba(0, 0, 0, 0.16);
 }
+/* Section wrapper */
+.artisan-swiper-section {
+  margin: 3rem 0 4rem;
+}
+
+/* Make Swiper height adapt to tallest card */
+.professorSwiper .swiper-wrapper {
+  align-items: stretch;
+}
+
+/* Each slide is a full card */
+.professorSwiper .swiper-slide.artisan-card {
+  height: auto;
+  display: flex;
+}
+
+/* Actual card styling */
+.artisan-card {
+  width: 100%;
+  background: #ffffff;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.03);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Image area: enforce aspect ratio */
+.artisan-card__image {
+  width: 100%;
+  padding-top: 65%; /* ~3:2 ratio */
+  background-size: cover;
+  background-position: center;
+}
+
+/* Text + buttons */
+.artisan-card__body {
+  padding: 1.5rem 1.75rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.artisan-card__body h3 {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #9b5b3b; /* your caramel-y heading color */
+}
+
+.artisan-card__body p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #5a463d;
+}
+
+/* "View" button */
+.artisan-card__button {
+  margin-top: 0.75rem;
+  align-self: flex-start;
+  display: inline-block;
+  padding: 0.45rem 1.2rem;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  background: #6d8874; /* your green */
+  color: #fff;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.artisan-card__button:hover,
+.artisan-card__button:focus {
+  background: #58705e;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.18);
+}
+/* ===========================================================
+   Artisans Swiper — Match Locale Slider Button Aesthetic
+   ========================================================== */
+
+.professor-nav {
+  color: #5c6f64 !important; /* same greenish text */
+  background: #c9e3d7 !important; /* minty button bg */
+  width: 46px !important;
+  height: 46px !important;
+  border-radius: 50% !important;
+
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.professor-nav:hover {
+  background: #b0cdbc !important;
+  transform: translateY(-2px);
+}
+
+/* Make arrow icon properly visible */
+.professor-nav::after {
+  font-size: 18px !important;
+  color: #5c6f64 !important;
+}
+
+/* Position arrows centered relative to cards */
+.professor-nav--prev,
+.professor-nav--next {
+  top: 48%;
+}
+
 /* Pastry section on single-locale pages */
 .pastry-case-section {
   margin-top: 3rem;
@@ -2177,8 +2298,8 @@ body.admin-bar .search-overlay {
 }
 /* Each card takes up a fixed-ish width */
 .pastry-card {
-  flex: 0 1 240px;
-  max-width: 260px;
+  flex: 0 1 320px;
+  max-width: 340px;
 }
 .pastry-card__link {
   display: block;
@@ -2197,7 +2318,7 @@ body.admin-bar .search-overlay {
 /* Fixed card height like your CodePen */
 .pastry-card__image-wrap {
   width: 100%;
-  height: 180px;
+  height: 260px;
   position: relative;
   overflow: hidden;
 }
@@ -2246,25 +2367,32 @@ body.admin-bar .search-overlay {
   opacity: 1;
   transform: translateY(0);
 }
-/* artisans carousel */
-/* Section spacing */
-.artisan-swiper-section {
-  margin-top: 4rem;
-  margin-bottom: 4rem;
+/* 1. The Container MUST have a height for the grid to wrap into 3 rows */
+.artisan-main-grid-swiper {
+  width: 100%;
+  height: 1350px; /* Adjust this: (Card Height * 3) + Gaps */
+  padding: 20px 0 60px !important;
 }
 
-/* Make slides look like cards */
+/* 2. Each slide's height must be precisely 1/3rd of the container */
+.artisan-main-grid-swiper .swiper-slide {
+  height: calc(
+    (100% - 60px) / 3
+  ) !important; /* (Total height - gaps) / 3 rows */
+  display: flex;
+}
+
+/* 3. Aesthetic Styling to match your screenshot */
 .artisan-card {
+  width: 100%;
   background: #ffffff;
-  border-radius: 24px;
+  border-radius: 30px; /* High rounded corners */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
   overflow: hidden;
-  box-shadow:
-    0 18px 45px rgba(0, 0, 0, 0.16),
-    0 6px 18px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
-  max-width: 320px;
-  margin: 0 auto;
+  border: 1px solid #f2f2f2;
+  transition: transform 0.3s ease;
 }
 
 .artisan-card__image {
@@ -2275,44 +2403,40 @@ body.admin-bar .search-overlay {
 }
 
 .artisan-card__body {
-  padding: 2.5rem 1.75rem;
+  padding: 20px;
   text-align: center;
+  flex-grow: 1;
+}
+
+.artisan-card__title {
+  margin: 0 0 15px;
+  font-size: 1.15rem;
+  color: #8b5e3c; /* Brown text color */
+  font-weight: 700;
 }
 
 .artisan-card__button {
   display: inline-block;
-  margin-top: 0.85rem;
-  padding: 0.65rem 2.5rem;
-  border-radius: 999px;
+  padding: 8px 30px;
+  background: #6d8874; /* Sage green button */
+  color: #fff !important;
+  border-radius: 50px;
   text-decoration: none;
   font-weight: 600;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  background: #ee964b;
-  color: #ffffff;
+  font-size: 0.9rem;
 }
 
-/* Swiper navigation styled like a circular control */
-.professorSwiper .professor-nav {
-  width: 44px;
-  height: 44px;
-  border-radius: 999px;
-  background: #ee826c;
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+/* 4. Navigation Buttons (Mint Green) */
+.artisan-nav-btn {
+  background: #c9e3d7 !important; /* Mint background */
+  width: 46px !important;
+  height: 46px !important;
+  border-radius: 50%;
+  color: #5c6f64 !important; /* Darker mint arrow */
 }
 
-.professorSwiper .professor-nav::after {
-  font-size: 18px;
-  color: #fff;
+.artisan-nav-btn::after {
+  font-size: 18px !important;
+  font-weight: bold;
 }
-
-/* Position arrows vertically centered on the slider */
-.professorSwiper .professor-nav--prev {
-  left: 0;
-}
-
-.professorSwiper .professor-nav--next {
-  right: 0;
-}
-
 /*# sourceMappingURL=style-index.css.map*/

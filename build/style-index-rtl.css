@@ -933,6 +933,8 @@ body.login {
   right: 0;
   left: 0;
   padding: 20px 0;
+  background: rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(8px);
 }
 .site-header__avatar {
   position: absolute;
