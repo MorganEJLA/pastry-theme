@@ -7,10 +7,10 @@ get_header(); ?>
         style="background-image: url(<?php echo get_theme_file_uri('/images/cuba-banner.jpg') ?>)"
       ></div>
       <div class="page-banner__content container container--narrow">
-        <h1 class="page-banner__title">Featured Desserts</h1>
+        <h1 class="page-banner__title">Featured Events</h1>
         <div class="page-banner__intro">
           <p>
-            What featured desserts have we celebrated recently?
+            What featured events have we celebrated recently?
           </p>
         </div>
       </div>
@@ -25,8 +25,8 @@ get_header(); ?>
 
   <hr class="section-break">
   <p>
-    Curious about past featured desserts?
-    <a href="<?php echo site_url('/past_events'); ?>">Explore the full pastry case</a>.
+    Curious about past featured events?
+    <a href="<?php echo site_url('/past_events'); ?>">Explore the archive</a>.
   </p>
 </div>
 
