@@ -61,7 +61,7 @@ Findings were grouped by recurring patterns rather than individual instances.
 
 | Issue | WCAG | Scope | Status |
 |------|------|-------|--------|
-| Button color contrast (all button variants) | 1.4.3 | Theme | Open |
+| Button color contrast (all button variants) | 1.4.3 | Theme | Open (#1)|
 | Search input missing label | 1.3.1 / 4.1.2 | Theme | Open |
 | Slider bullets missing accessible names | 4.1.2 | Theme / Plugin | Open |
 | Icon-only links missing accessible names | 4.1.2 | Theme | Open |
