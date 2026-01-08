@@ -1104,6 +1104,14 @@ body.login {
 .site-header .btn--with-photo {
   margin-right: 0;
 }
+/* Final safety lock: never show mobile triggers on desktop */
+@media (min-width: 960px) {
+  .site-header__menu-trigger,
+  .site-header__search-trigger {
+    display: none !important;
+  }
+}
+
 .site-footer {
   padding: 2rem 0 3.5rem 0;
   background-image: linear-gradient(#fff, #ececec);
@@ -2346,17 +2354,19 @@ body.admin-bar .search-overlay {
 }
 /* Wrapper for all cards under each category */
 .pastry-cards {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(280px, 340px));
   gap: 2rem;
+  justify-content: center; /* centers the whole grid block */
+  justify-items: center; /* centers items inside their tracks */
   padding: 0;
   margin: 2rem 0 3rem;
   list-style: none;
-  justify-content: flex-start;
 }
-/* Each card takes up a fixed-ish width */
+
+/* Each card */
 .pastry-card {
-  flex: 0 1 320px;
+  width: 100%;
   max-width: 340px;
 }
 .pastry-card__link {
