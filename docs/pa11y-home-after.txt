@@ -15,12 +15,12 @@ Results for URL: http://universo-da-docura/
    ├── html > body > header > div > div > div > a:nth-child(3)
    └── <a href="http://universo-da-docura/search" class="search-trigger js-search-trigger"> <i class="fa fa-sear...</a>
 
- • Error: This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least 4.5:1, but text in this element has a contrast ratio of 2.72:1. Recommendation:  change text colour to #080808.
+ • Error: This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least 4.5:1, but text in this element has a contrast ratio of 2.72:1. Recommendation:  change text color to #080808.
    ├── WCAG2AA.Principle1.Guideline1_4.1_4_3.G18.Fail
    ├── html > body > div:nth-child(3) > div:nth-child(2) > div > div:nth-child(2) > div > p > a
    └── <a href="http://universo-da-docura/exploring-tea/" class="nu gray">Read more</a>
 
- • Error: This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least 4.5:1, but text in this element has a contrast ratio of 2.72:1. Recommendation:  change text colour to #080808.
+ • Error: This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least 4.5:1, but text in this element has a contrast ratio of 2.72:1. Recommendation:  change text color to #080808.
    ├── WCAG2AA.Principle1.Guideline1_4.1_4_3.G18.Fail
    ├── html > body > div:nth-child(3) > div:nth-child(2) > div > div:nth-child(3) > div > p > a
    └── <a href="http://universo-da-docura/creating-fictional-chefs/" class="nu gray">Read more</a>
@@ -66,4 +66,3 @@ Results for URL: http://universo-da-docura/
    └── <input type="text" class="search-term" placeholder="Search desserts, locales, journal…" id="search-term">
 
 12 Errors
-
