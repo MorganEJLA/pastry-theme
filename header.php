@@ -16,7 +16,14 @@
     <!-- MOBILE search icon (shows on small screens, hidden at >= 960px) -->
     <a href="<?php echo esc_url(site_url('/search')); ?>"
        class="site-header__search-trigger js-search-trigger">
-      <i class="fa fa-search" aria-hidden="true"></i>
+      <input
+        id="search-term"
+        class="search-term"
+        type="text"
+        placeholder="Search desserts, locales, journal…"
+        aria-label="Search"
+/>
+
     </a>
 
     <!-- MOBILE hamburger icon -->
