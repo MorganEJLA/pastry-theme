@@ -2507,4 +2507,31 @@ body.admin-bar .search-overlay {
   font-size: 18px !important;
   font-weight: bold;
 }
+/* === A11y hotfix: button contrast (WCAG 2.1 AA) === */
+.btn--blue,
+.btn--orange,
+.btn--dark-orange {
+  color: #fff;
+}
+
+.btn--blue { background-color: #5e7d6e; }
+.btn--orange { background-color: #b75f14; }
+.btn--dark-orange { background-color: #8f3e2d; }
+
+.btn--blue:hover,
+.btn--orange:hover,
+.btn--dark-orange:hover,
+.btn--blue:focus-visible,
+.btn--orange:focus-visible,
+.btn--dark-orange:focus-visible {
+  filter: brightness(0.9);
+}
+
+.btn--blue:focus-visible,
+.btn--orange:focus-visible,
+.btn--dark-orange:focus-visible {
+  outline: 3px solid #000;
+  outline-offset: 3px;
+}
+
 /*# sourceMappingURL=style-index.css.map*/
