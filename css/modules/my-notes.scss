@@ -14,13 +14,13 @@
 .submit-note {
   color: #fff;
   border: none;
-  background-color: $darkOrange;
+  background-color: $burnt-sienna;
   line-height: 1.65;
 }
 
 .submit-note:hover {
   background-color: adjust-color(
-    $darkOrange,
+    $burnt-sienna,
     $lightness: -10%,
     $saturation: -20%
   );
@@ -56,7 +56,7 @@
   font-size: 1.85rem;
   font-family: "Raleway Condensed", sans-serif;
   font-weight: 300;
-  color: $mainBlue;
+  color: $pistachio;
   border: 1px solid transparent;
   padding: 7px;
   outline: none;

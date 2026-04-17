@@ -17,6 +17,7 @@
     <a href="<?php echo esc_url(site_url('/search')); ?>"
        class="site-header__search-trigger js-search-trigger">
       <i class="fa fa-search" aria-hidden="true"></i>
+      <span class = "sr-only">Search</span>
     </a>
 
     <!-- MOBILE hamburger icon -->
@@ -53,6 +54,7 @@
         <a href="<?php echo esc_url(site_url('/search')); ?>"
            class="search-trigger js-search-trigger">
           <i class="fa fa-search" aria-hidden="true"></i>
+          <span class = "sr-only">Search</span>
         </a>
       </div>
 

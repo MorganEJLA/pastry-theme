@@ -54,7 +54,7 @@ class Search {
   async getResults() {
     try {
       const response = await axios.get(
-        `${pastryData.root_url}/wp-json/pastry/v1/search?term=${this.searchField.value}`
+        `${pastryData.root_url}/wp-json/pastry/v1/search?term=${this.searchField.value}`,
       );
 
       const results = response.data;
@@ -76,7 +76,7 @@ class Search {
                     <li>
                       <a href="${item.permalink}">${item.title}</a>
                     </li>
-                  `
+                  `,
                 )
                 .join("")}
             ${results.generalInfo.length ? "</ul>" : ""}
@@ -96,7 +96,7 @@ class Search {
                     <li>
                       <a href="${item.permalink}">${item.title}</a>
                     </li>
-                  `
+                  `,
                 )
                 .join("")}
             ${results.event.length ? "</ul>" : ""}
@@ -113,7 +113,7 @@ class Search {
                     <li>
                       <a href="${item.permalink}">${item.title}</a>
                     </li>
-                  `
+                  `,
                 )
                 .join("")}
             ${results.pastry_case.length ? "</ul>" : ""}
@@ -133,7 +133,7 @@ class Search {
                     <li>
                       <a href="${item.permalink}">${item.title}</a>
                     </li>
-                  `
+                  `,
                 )
                 .join("")}
             ${results.locale.length ? "</ul>" : ""}
@@ -150,7 +150,7 @@ class Search {
                     <li>
                       <a href="${item.permalink}">${item.title}</a>
                     </li>
-                  `
+                  `,
                 )
                 .join("")}
             ${results.journal.length ? "</ul>" : ""}
@@ -206,13 +206,14 @@ class Search {
         <div class="search-overlay__top">
           <div class="container">
             <i class="fa fa-search search-overlay__icon" aria-hidden="true"></i>
+            <label for="search-term" class="sr-only">Search</label>
             <input
               type="text"
               class="search-term"
               placeholder="Search desserts, locales, journal…"
               id="search-term"
             >
-            <i class="fa fa-window-close search-overlay__close" aria-hidden="true"></i>
+            <button class="fa fa-window-close search-overlay__close" aria-hidden="true"></button>
           </div>
         </div>
 
@@ -225,7 +226,7 @@ class Search {
           </div>
         </div>
       </div>
-    `
+    `,
     );
   }
 }

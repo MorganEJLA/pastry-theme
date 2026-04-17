@@ -1,27 +1,35 @@
 /* Customize Login Screen */
 
 body.login .button-primary {
-  background-color: $darkOrange;
-  border-color: scale-color($darkOrange, $lightness: -10%);
-  text-shadow: 0 -1px 1px scale-color($darkOrange, $lightness: -15%), 1px 0 1px scale-color($darkOrange, $lightness: -15%), 0 1px 1px scale-color($darkOrange, $lightness: -15%), -1px 0 1px scale-color($darkOrange, $lightness: -15%);
-  box-shadow: 0 1px 0 scale-color($darkOrange, $lightness: -20%);
+  background-color: $burnt-sienna;
+  border-color: scale-color($burnt-sienna, $lightness: -10%);
+  text-shadow:
+    0 -1px 1px scale-color($burnt-sienna, $lightness: -15%),
+    1px 0 1px scale-color($burnt-sienna, $lightness: -15%),
+    0 1px 1px scale-color($burnt-sienna, $lightness: -15%),
+    -1px 0 1px scale-color($burnt-sienna, $lightness: -15%);
+  box-shadow: 0 1px 0 scale-color($burnt-sienna, $lightness: -20%);
 }
 
 body.login .button-primary:active,
 body.login .button-primary:focus,
 body.login .button-primary:hover {
-  background-color: scale-color($darkOrange, $lightness: -9%);
-  border-color: $darkOrange;
-  text-shadow: 0 -1px 1px scale-color($darkOrange, $lightness: -20%), 1px 0 1px scale-color($darkOrange, $lightness: -20%), 0 1px 1px scale-color($darkOrange, $lightness: -20%), -1px 0 1px scale-color($darkOrange, $lightness: -20%);
-  box-shadow: 0 1px 0 scale-color($darkOrange, $lightness: -25%);
+  background-color: scale-color($burnt-sienna, $lightness: -9%);
+  border-color: $burnt-sienna;
+  text-shadow:
+    0 -1px 1px scale-color($burnt-sienna, $lightness: -20%),
+    1px 0 1px scale-color($burnt-sienna, $lightness: -20%),
+    0 1px 1px scale-color($burnt-sienna, $lightness: -20%),
+    -1px 0 1px scale-color($burnt-sienna, $lightness: -20%);
+  box-shadow: 0 1px 0 scale-color($burnt-sienna, $lightness: -25%);
 }
 
 body.login {
-  background-color: $beige;
+  background-color: $cream;
 }
 
 .login h1 a {
-  color: $mainBlue;
+  color: $pistachio;
   font-size: 30px;
   font-weight: 300;
   background-image: none;

@@ -1,0 +1,11 @@
+# Query: .gray
+# Flags: WordMatch
+# Including: modules
+# ContextLines: 1
+
+1 result - 1 file
+
+wp-content/themes/pastry-theme/css/modules/shame.scss:
+  95  }
+  96: .gray {
+  97    color: #444444;

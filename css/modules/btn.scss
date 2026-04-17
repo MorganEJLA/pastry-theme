@@ -22,57 +22,57 @@
   }
 
   &--orange {
-    background-color: $lightOrange;
+    background-color: $honey;
   }
 
   &--orange:hover {
     background: linear-gradient(
-      $lightOrange,
-      scale-color($lightOrange, $lightness: -25%, $saturation: 100%)
+      $honey,
+      scale-color($honey, $lightness: -25%, $saturation: 100%)
     );
   }
 
   &--dark-orange {
-    background-color: $darkOrange;
+    background-color: $burnt-sienna;
   }
 
   &--dark-orange:hover {
     background: linear-gradient(
-      $darkOrange,
-      scale-color($darkOrange, $lightness: -35%, $saturation: 100%)
+      $burnt-sienna,
+      scale-color($burnt-sienna, $lightness: -35%, $saturation: 100%)
     );
   }
 
   &--blue {
-    background-color: $mainBlue;
+    background-color: $pistachio;
   }
 
   &--blue:hover {
     background: linear-gradient(
-      scale-color($mainBlue, $lightness: 11%),
-      $mainBlue
+      scale-color($pistachio, $lightness: 11%),
+      $pistachio
     );
   }
 
   &--yellow {
-    background-color: $mainYellow;
+    background-color: $terracotta;
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.22);
   }
 
   &--yellow:hover {
     background: linear-gradient(
-      $mainYellow,
-      scale-color($mainYellow, $lightness: -29%, $saturation: 100%)
+      $terracotta,
+      scale-color($terracotta, $lightness: -29%, $saturation: 100%)
     );
   }
 
   &--beige {
-    background-color: $beige;
+    background-color: $cream;
     color: #173f58;
   }
 
   &--beige:hover {
-    background-color: $mainYellow;
+    background-color: $terracotta;
   }
 
   &--gray {

@@ -5,9 +5,9 @@
   left: 0;
   right: 0;
   padding: 20px 0;
-   // ✨ new bits
-  background: rgba(0, 0, 0, 0.28);   // slightly dark, semi-transparent
-  backdrop-filter: blur(8px);        // frosted glass effect (optional)
+  // ✨ new bits
+  background: rgba(0, 0, 0, 0.28); // slightly dark, semi-transparent
+  backdrop-filter: blur(8px); // frosted glass effect (optional)
 
   &__avatar {
     position: absolute;
@@ -24,14 +24,17 @@
   &__menu {
     visibility: hidden;
     position: absolute;
-    background-color: adjust-color($mainBlue, $alpha: -0.11, $lightness: -1%);
+    background-color: adjust-color($pistachio, $alpha: -0.11, $lightness: -1%);
     left: 0;
     right: 0;
     top: -20px;
     padding-top: 58px;
     opacity: 0;
     transform: translateY(-20%);
-    transition: opacity 0.3s ease-out, visibility 0.3s ease-out, transform 0.3s ease-out;
+    transition:
+      opacity 0.3s ease-out,
+      visibility 0.3s ease-out,
+      transform 0.3s ease-out;
     padding-bottom: 20px;
 
     &--active {
@@ -86,7 +89,9 @@
     }
 
     @include atMedium {
-      display: none;
+      &.fa {
+        display: none;
+      }
     }
   }
 

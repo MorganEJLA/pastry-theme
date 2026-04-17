@@ -1,0 +1,124 @@
+
+Welcome to Pa11y
+
+ > Running Pa11y on URL http://universo-da-docura
+
+Results for URL: http://universo-da-docura/
+
+ • Error: Anchor element found with a valid href attribute, but no link content has been supplied.
+   ├── WCAG2AA.Principle4.Guideline4_1.4_1_2.H91.A.NoContent
+   ├── html > body > header > div > a
+   └── <a href="http://universo-da-docura/search" class="site-header__search-trigger js-search-trigger"> <i class="fa fa-search" ...</a>
+
+ • Error: This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least 4.5:1, but text in this element has a contrast ratio of 2.31:1. Recommendation:  change background to #b75f14.
+   ├── WCAG2AA.Principle1.Guideline1_4.1_4_3.G18.Fail
+   ├── html > body > header > div > div > div > a:nth-child(1)
+   └── <a href="#" class="btn btn--small btn--orange float-left push-right">Login</a>
+
+ • Error: This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least 4.5:1, but text in this element has a contrast ratio of 2.61:1. Recommendation:  change background to #c1553f.
+   ├── WCAG2AA.Principle1.Guideline1_4.1_4_3.G18.Fail
+   ├── html > body > header > div > div > div > a:nth-child(2)
+   └── <a href="#" class="btn btn--small btn--dark-orange float-left">Sign Up</a>
+
+ • Error: Anchor element found with a valid href attribute, but no link content has been supplied.
+   ├── WCAG2AA.Principle4.Guideline4_1.4_1_2.H91.A.NoContent
+   ├── html > body > header > div > div > div > a:nth-child(3)
+   └── <a href="http://universo-da-docura/search" class="search-trigger js-search-trigger"> <i class="fa fa-sear...</a>
+
+ • Error: This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least 3:1, but text in this element has a contrast ratio of 1.8:1. Recommendation:  change background to #7c9b8c.
+   ├── WCAG2AA.Principle1.Guideline1_4.1_4_3.G145.Fail
+   ├── html > body > div:nth-child(2) > div:nth-child(2) > a
+   └── <a href="http://universo-da-docura/locales/" class="btn btn--large btn--blue">Start Exploring</a>
+
+ • Error: This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least 4.5:1, but text in this element has a contrast ratio of 1.8:1. Recommendation:  change background to #5e7d6e.
+   ├── WCAG2AA.Principle1.Guideline1_4.1_4_3.G18.Fail
+   ├── html > body > div:nth-child(3) > div:nth-child(1) > div > p > a
+   └── <a href="http://universo-da-docura/events/" class="btn btn--blue">View All Events</a>
+
+ • Error: This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least 4.5:1, but text in this element has a contrast ratio of 2.72:1. Recommendation:  change text colour to #080808.
+   ├── WCAG2AA.Principle1.Guideline1_4.1_4_3.G18.Fail
+   ├── html > body > div:nth-child(3) > div:nth-child(2) > div > div:nth-child(2) > div > p > a
+   └── <a href="http://universo-da-docura/exploring-tea/" class="nu gray">Read more</a>
+
+ • Error: This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least 4.5:1, but text in this element has a contrast ratio of 2.72:1. Recommendation:  change text colour to #080808.
+   ├── WCAG2AA.Principle1.Guideline1_4.1_4_3.G18.Fail
+   ├── html > body > div:nth-child(3) > div:nth-child(2) > div > div:nth-child(3) > div > p > a
+   └── <a href="http://universo-da-docura/creating-fictional-chefs/" class="nu gray">Read more</a>
+
+ • Error: This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least 4.5:1, but text in this element has a contrast ratio of 1.8:1. Recommendation:  change background to #5e7d6e.
+   ├── WCAG2AA.Principle1.Guideline1_4.1_4_3.G18.Fail
+   ├── html > body > div:nth-child(4) > div > div:nth-child(1) > div:nth-child(1) > div > div > p:nth-child(3) > a
+   └── <a href="http://universo-da-docura/pastry-case/" class="btn btn--blue">View Desserts</a>
+
+ • Error: This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least 4.5:1, but text in this element has a contrast ratio of 1.8:1. Recommendation:  change background to #5e7d6e.
+   ├── WCAG2AA.Principle1.Guideline1_4.1_4_3.G18.Fail
+   ├── html > body > div:nth-child(4) > div > div:nth-child(1) > div:nth-child(2) > div > div > p:nth-child(3) > a
+   └── <a href="http://universo-da-docura/about-us/" class="btn btn--blue">Our Story</a>
+
+ • Error: This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least 4.5:1, but text in this element has a contrast ratio of 1.8:1. Recommendation:  change background to #5e7d6e.
+   ├── WCAG2AA.Principle1.Guideline1_4.1_4_3.G18.Fail
+   ├── html > body > div:nth-child(4) > div > div:nth-child(1) > div:nth-child(3) > div > div > p:nth-child(3) > a
+   └── <a href="http://universo-da-docura/locales/" class="btn btn--blue">Explore locales</a>
+
+ • Error: This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least 4.5:1, but text in this element has a contrast ratio of 1.8:1. Recommendation:  change background to #5e7d6e.
+   ├── WCAG2AA.Principle1.Guideline1_4.1_4_3.G18.Fail
+   ├── html > body > div:nth-child(4) > div > div:nth-child(1) > div:nth-child(4) > div > div > p:nth-child(3) > a
+   └── <a href="http://universo-da-docura/pastry-case/" class="btn btn--blue">View Desserts</a>
+
+ • Error: This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least 4.5:1, but text in this element has a contrast ratio of 1.8:1. Recommendation:  change background to #5e7d6e.
+   ├── WCAG2AA.Principle1.Guideline1_4.1_4_3.G18.Fail
+   ├── html > body > div:nth-child(4) > div > div:nth-child(1) > div:nth-child(5) > div > div > p:nth-child(3) > a
+   └── <a href="http://universo-da-docura/about-us/" class="btn btn--blue">Our Story</a>
+
+ • Error: This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least 4.5:1, but text in this element has a contrast ratio of 1.8:1. Recommendation:  change background to #5e7d6e.
+   ├── WCAG2AA.Principle1.Guideline1_4.1_4_3.G18.Fail
+   ├── html > body > div:nth-child(4) > div > div:nth-child(1) > div:nth-child(6) > div > div > p:nth-child(3) > a
+   └── <a href="http://universo-da-docura/locales/" class="btn btn--blue">Explore locales</a>
+
+ • Error: This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least 4.5:1, but text in this element has a contrast ratio of 1.8:1. Recommendation:  change background to #5e7d6e.
+   ├── WCAG2AA.Principle1.Guideline1_4.1_4_3.G18.Fail
+   ├── html > body > div:nth-child(4) > div > div:nth-child(1) > div:nth-child(7) > div > div > p:nth-child(3) > a
+   └── <a href="http://universo-da-docura/pastry-case/" class="btn btn--blue">View Desserts</a>
+
+ • Error: This button element does not have a name available to an accessibility API. Valid names are: title undefined, element content, aria-label undefined, aria-labelledby undefined.
+   ├── WCAG2AA.Principle4.Guideline4_1.4_1_2.H91.Button.Name
+   ├── html > body > div:nth-child(4) > div > div:nth-child(2) > button:nth-child(1)
+   └── <button class="slider__bullet glide__bullet glide__bullet--active" data-glide-dir="=0"></button>
+
+ • Error: This button element does not have a name available to an accessibility API. Valid names are: title undefined, element content, aria-label undefined, aria-labelledby undefined.
+   ├── WCAG2AA.Principle4.Guideline4_1.4_1_2.H91.Button.Name
+   ├── html > body > div:nth-child(4) > div > div:nth-child(2) > button:nth-child(2)
+   └── <button class="slider__bullet glide__bullet" data-glide-dir="=1"></button>
+
+ • Error: This button element does not have a name available to an accessibility API. Valid names are: title undefined, element content, aria-label undefined, aria-labelledby undefined.
+   ├── WCAG2AA.Principle4.Guideline4_1.4_1_2.H91.Button.Name
+   ├── html > body > div:nth-child(4) > div > div:nth-child(2) > button:nth-child(3)
+   └── <button class="slider__bullet glide__bullet" data-glide-dir="=2"></button>
+
+ • Error: Anchor element found with a valid href attribute, but no link content has been supplied.
+   ├── WCAG2AA.Principle4.Guideline4_1.4_1_2.H91.A.NoContent
+   ├── html > body > footer > div > div > div:nth-child(3) > nav > ul > li:nth-child(1) > a
+   └── <a href="#" class="social-color-facebook"> <i class="fa f...</a>
+
+ • Error: Anchor element found with a valid href attribute, but no link content has been supplied.
+   ├── WCAG2AA.Principle4.Guideline4_1.4_1_2.H91.A.NoContent
+   ├── html > body > footer > div > div > div:nth-child(3) > nav > ul > li:nth-child(2) > a
+   └── <a href="#" class="social-color-linkedin"> <i class="fa f...</a>
+
+ • Error: Anchor element found with a valid href attribute, but no link content has been supplied.
+   ├── WCAG2AA.Principle4.Guideline4_1.4_1_2.H91.A.NoContent
+   ├── html > body > footer > div > div > div:nth-child(3) > nav > ul > li:nth-child(3) > a
+   └── <a href="#" class="social-color-instagram"> <i class="fa f...</a>
+
+ • Error: This textinput element does not have a name available to an accessibility API. Valid names are: label element, title undefined, aria-label undefined, aria-labelledby undefined.
+   ├── WCAG2AA.Principle4.Guideline4_1.4_1_2.H91.InputText.Name
+   ├── #search-term
+   └── <input type="text" class="search-term" placeholder="Search desserts, locales, journal…" id="search-term">
+
+ • Error: This form field should be labelled in some way. Use the label element (either with a "for" attribute or wrapped around the form field), or "title", "aria-label" or "aria-labelledby" attributes as appropriate.
+   ├── WCAG2AA.Principle1.Guideline1_3.1_3_1.F68
+   ├── #search-term
+   └── <input type="text" class="search-term" placeholder="Search desserts, locales, journal…" id="search-term">
+
+23 Errors
+

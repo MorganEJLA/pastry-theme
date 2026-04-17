@@ -122,19 +122,12 @@ function pastry_theme_files() {
         null
     );
 
-    // Base Styles
-    wp_enqueue_style(
-        'pastry_base_styles',
-        get_theme_file_uri('/build/index.css'),
-        array(),
-        '1.0'
-    );
 
     // Main Styles
     wp_enqueue_style(
         'pastry_main_styles',
         get_theme_file_uri('/build/style-index.css'),
-        array('pastry_base_styles'),
+        array(),
         '1.0'
     );
 
@@ -144,27 +137,7 @@ function pastry_theme_files() {
         'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'
     );
 
-    /* ---------------------------------------
-       LOAD SWIPER ONLY ON THE PROFESSORS PAGE
-    ---------------------------------------- */
-    if (is_page('professors')) {   // make sure the page slug is actually 'professors'
-        // Swiper CSS
-        wp_enqueue_style(
-            'swiper-css',
-            'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css',
-            array(),
-            '11.0'
-        );
 
-        // Swiper JS
-        wp_enqueue_script(
-            'swiper-js',
-            'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js',
-            array(),
-            '11.0',
-            true
-        );
-    }
 }
 
 add_action('wp_enqueue_scripts', 'pastry_theme_files');
@@ -268,9 +241,9 @@ function pastry_synonym_search($search) {
             // Africa
             'cape verde' => 'cabo verde',
             'cabo verde' => 'cabo verde',
-            'ivory coast' => 'côte d’ivoire',
-            'cote divoire' => 'côte d’ivoire',
-            'côte d’ivoire' => 'côte d’ivoire',
+            'ivory coast' => "côte d'ivoire",
+            'cote divoire' => "côte d'ivoire",
+            "côte d'ivoire" => "côte d'ivoire",
             'senegal' => 'sénégal',
             'sénégal' => 'sénégal',
             'kenya' => 'kenya',
@@ -418,20 +391,6 @@ function pastry_synonym_search($search) {
 
     return $search; // Always return the (potentially modified) SQL search fragment
 }
-function uds_enqueue_swiper_assets() {
-    if ( is_page( 'professors' ) || is_page( 'artisans' ) ) {
-        wp_enqueue_style(
-            'swiper-css',
-            'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css'
-        );
-        wp_enqueue_script(
-            'swiper-js',
-            'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js',
-            array(),
-            null,
-            true
-        );
-    }
-}
-add_action( 'wp_enqueue_scripts', 'uds_enqueue_swiper_assets' );
+
+
 ?>

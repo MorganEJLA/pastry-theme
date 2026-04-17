@@ -1,5 +1,5 @@
 .metabox {
-  background-color: $beige;
+  background-color: $cream;
   border-radius: 3px;
   padding: 10px 15px;
   display: inline-block;
@@ -23,11 +23,11 @@
   p {
     margin: 0;
     font-size: 0.9rem;
-    color: adjust-color($beige, $lightness: -45%, $saturation: -33%);
+    color: adjust-color($cream, $lightness: -45%, $saturation: -33%);
   }
 
   a {
-    color: adjust-color($beige, $lightness: -45%, $saturation: -33%);
+    color: adjust-color($cream, $lightness: -45%, $saturation: -33%);
     text-decoration: none;
     font-weight: bold;
   }
@@ -37,7 +37,7 @@
   }
 
   & &__blog-home-link {
-    background-color: $mainBlue;
+    background-color: $pistachio;
     color: #fff;
     display: inline-block;
     padding: 10px 15px;
@@ -47,6 +47,6 @@
 
   & &__blog-home-link:hover {
     text-decoration: none;
-    background-color: adjust-color($mainBlue, $lightness: -5%);
+    background-color: adjust-color($pistachio, $lightness: -5%);
   }
 }
