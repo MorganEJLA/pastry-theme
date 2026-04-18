@@ -173,7 +173,7 @@ add_action('pre_get_posts', 'pastry_adjust_queries');
 // 6. SEARCH SYNONYMS (e.g. Azores → Açores)
 // =================================================================================
 add_filter('posts_search', 'pastry_synonym_search');
-add_filter('posts_search', 'pastry_synonym_search');
+
 function pastry_synonym_search($search) {
 
     global $wpdb;
