@@ -370,11 +370,6 @@ function pastry_synonym_search($search) {
             $original_like = '%' . $wpdb->esc_like($original_query) . '%';
             $replacement_like = '%' . $wpdb->esc_like($replacement_term) . '%';
 
-            // 3. Create a combined search condition: (Term LIKE 'Original%' OR Term LIKE 'Replacement%')
-            // Note: We use the existing SQL structure for safety and portability.
-
-            // The logic below assumes a standard WordPress search query structure.
-            // We search for the original search condition and wrap it to include the synonym.
 
             // The default search condition to find/replace:
             $search_pattern = "LIKE '{$original_like}'";
@@ -382,8 +377,7 @@ function pastry_synonym_search($search) {
             // The replacement search condition that includes both terms:
             $search_replacement = "LIKE '{$original_like}' OR {$wpdb->posts}.post_title LIKE '{$replacement_like}' OR {$wpdb->posts}.post_content LIKE '{$replacement_like}'";
 
-            // Apply the replacement across the SQL string
-            // We use str_replace to inject the OR condition into the existing AND conditions.
+
             $search = str_replace($search_pattern, $search_replacement, $search);
 
         }
@@ -392,5 +386,11 @@ function pastry_synonym_search($search) {
     return $search; // Always return the (potentially modified) SQL search fragment
 }
 
+function pastry_related_desserts_prompt() {
+    echo '<div class="container container--narrow">
+        <p class="generic-content">Enjoyed this pastry? Explore more from this region.</p>
+    </div>';
+}
+add_action('pastry_after_case_content', 'pastry_related_desserts_prompt');
 
 ?>

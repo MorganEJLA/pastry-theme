@@ -61,6 +61,7 @@ while (have_posts()) {
             ?>
         </div>
     </div>
-
+    <?php do_action('pastry_after_case_content'); ?>
 <?php }
+
 get_footer();
