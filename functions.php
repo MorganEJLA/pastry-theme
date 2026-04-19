@@ -393,4 +393,6 @@ function pastry_related_desserts_prompt() {
 }
 add_action('pastry_after_case_content', 'pastry_related_desserts_prompt');
 
+
+
 ?>

@@ -61,6 +61,18 @@
     </div><!-- end menu container -->
 
   </div>
+  <?php
+$pastry_id = intval(get_option('universo_pastry_of_month'));
+if ($pastry_id) {
+    $title = get_the_title($pastry_id);
+    $url   = get_permalink($pastry_id);
+?>
+  <div class="pastry-banner">
+    <span class="pastry-banner__inner">
+         Pastry of the Month: <a href="<?php echo esc_url($url); ?>"><em><?php echo esc_html($title); ?></em></a>
+    </span>
+  </div>
+<?php } ?>
 </header>
 
 
