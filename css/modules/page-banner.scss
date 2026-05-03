@@ -1,7 +1,8 @@
 .page-banner {
   background-color: #000;
-  padding: 80px 0 40px 0;
+  padding: 110px 0 40px 0; // was 80px, bumped up to clear nav + banner
   position: relative;
+
   @include atSmall {
     padding: 130px 0 60px 0;
   }

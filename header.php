@@ -7,28 +7,40 @@
     </head>
     <body <?php body_class(); ?>>
       <header class="site-header">
-  <div class="container">
+        <?php
+          $pastry_id = intval(get_option('universo_pastry_of_month'));
+            if ($pastry_id) {
+              $title = get_the_title($pastry_id);
+              $url   = get_permalink($pastry_id);
+        ?>
+  <div class="pastry-banner">
+    <span class="pastry-banner__inner">
+         Pastry of the Month: <a href="<?php echo esc_url($url); ?>"><em><?php echo esc_html($title); ?></em></a>
+    </span>
+  </div>
+<?php } ?>
+        <div class="container">
 
-    <h1 class="school-logo-text float-left">
-      <a href="<?php echo site_url()?>">Universo da Doçura</a>
-    </h1>
+        <h1 class="school-logo-text float-left">
+          <a href="<?php echo site_url()?>">Universo da Doçura</a>
+        </h1>
 
     <!-- MOBILE search icon (shows on small screens, hidden at >= 960px) -->
-    <a href="<?php echo esc_url(site_url('/search')); ?>"
-       class="site-header__search-trigger js-search-trigger">
-      <i class="fa fa-search" aria-hidden="true"></i>
-      <span class = "sr-only">Search</span>
-    </a>
+        <a href="<?php echo esc_url(site_url('/search')); ?>"
+        class="site-header__search-trigger js-search-trigger">
+        <i class="fa fa-search" aria-hidden="true"></i>
+        <span class = "sr-only">Search</span>
+      </a>
 
     <!-- MOBILE hamburger icon -->
-    <i class="site-header__menu-trigger fa fa-bars" aria-hidden="true"></i>
+      <i class="site-header__menu-trigger fa fa-bars" aria-hidden="true"></i>
 
     <!-- Desktop menu -->
-    <div class="site-header__menu group">
+      <div class="site-header__menu group">
 
-      <nav class="main-navigation">
-        <ul>
-          <li class="<?php if (is_page('about-us') || wp_get_post_parent_id(get_the_ID()) == 16) echo 'current-menu-item'; ?>">
+        <nav class="main-navigation">
+          <ul>
+           <li class="<?php if (is_page('about-us') || wp_get_post_parent_id(get_the_ID()) == 16) echo 'current-menu-item'; ?>">
             <a href="<?php echo site_url('/about-us'); ?>">About Us</a>
           </li>
 
@@ -61,18 +73,7 @@
     </div><!-- end menu container -->
 
   </div>
-  <?php
-$pastry_id = intval(get_option('universo_pastry_of_month'));
-if ($pastry_id) {
-    $title = get_the_title($pastry_id);
-    $url   = get_permalink($pastry_id);
-?>
-  <div class="pastry-banner">
-    <span class="pastry-banner__inner">
-         Pastry of the Month: <a href="<?php echo esc_url($url); ?>"><em><?php echo esc_html($title); ?></em></a>
-    </span>
-  </div>
-<?php } ?>
+
 </header>
 
 
