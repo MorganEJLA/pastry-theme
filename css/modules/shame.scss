@@ -37,8 +37,14 @@
   position: relative;
   z-index: 20;
   margin: 0;
-  font-size: 1.75rem;
-  font-weight: 100;
+  font-size: 1.4rem;
+  font-weight: 300;
+  font-family: "Cormorant Garamond", serif;
+}
+
+.school-logo-text a {
+  color: #fff;
+  text-decoration: none;
 }
 
 .school-logo-text strong {

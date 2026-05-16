@@ -15,7 +15,7 @@
   </div>
   <div class="locale-banner__text">
     <span class="slide-label">Locales</span>
-    <h2 class="locale-banner__headline">Every Bakery Has a Story</h2>
+    <h2 class="locale-banner__headline">Sweetness Has an Address</h2>
     <a href="<?php echo get_post_type_archive_link('locale'); ?>" class="slide-link">Explore Locales </a>
   </div>
 </div>
@@ -37,5 +37,8 @@
   <div class="artisan-banner__image" style="background-image: url(<?php echo get_theme_file_uri('/images/artisan-background.png') ?>)">
   </div>
 </div>
+
+<?php get_footer(); ?>
+
 
 <?php get_footer(); ?>
