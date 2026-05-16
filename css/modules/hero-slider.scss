@@ -1,5 +1,11 @@
 .hero-slider {
   position: relative;
+  overflow: hidden;
+
+  .glide__track,
+  .glide__slides {
+    height: 100%;
+  }
 
   div {
     outline: none;
@@ -8,6 +14,8 @@
   &__interior {
     padding-top: 60px;
     padding-bottom: 60px;
+    position: relative;
+    z-index: 1;
 
     @include atMedium {
       padding-top: 130px;
@@ -18,63 +26,80 @@
   &__slide {
     background-size: cover;
     background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    min-height: 600px;
+    height: 600px;
+    position: relative;
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0.4) 100%
+      );
+      z-index: 0;
+    }
   }
 
   &__overlay {
-    margin: 0 auto;
-    background-color: rgba(0, 0, 0, 0.68);
-    padding: 40px;
-    color: #fff;
+    background: none;
+    padding: 0;
+    max-width: 90%;
+    box-sizing: border-box;
+
     @include atMedium {
-      width: 50%;
+      max-width: 480px;
     }
   }
 }
 
-.slick-dots {
-  z-index: 100;
-  position: absolute;
-  left: 0;
-  right: 0;
-  padding: 0;
-  margin: 0;
-  text-align: center;
-  top: 15px;
+.slide-label {
+  display: block;
+  font-family: "Raleway", sans-serif;
+  font-weight: 700;
+  font-size: 0.7rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: $honey;
+  margin-bottom: 0.75rem;
+}
+
+.slide-headline {
+  font-family: "Abril Fatface", serif;
+  font-size: 2.8rem;
+  line-height: 1.1;
+  color: #fff;
+  text-shadow: 1px 2px 8px rgba(0, 0, 0, 0.5);
+  margin: 0 0 1.25rem 0;
+
   @include atMedium {
-    top: 50px;
+    font-size: 3.5rem;
   }
 }
 
-.slick-dots {
-  li {
-    list-style: none;
-    display: inline;
-  }
+.slide-link {
+  display: inline-block;
+  font-family: "Raleway", sans-serif;
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #fff;
+  text-decoration: none;
+  border-bottom: 1px solid $honey;
+  padding-bottom: 2px;
 
-  li button {
-    display: inline-block;
-    text-indent: -9999px;
-    font-size: 0;
-    line-height: 0;
-    width: 10px;
-    height: 10px;
-    background-color: rgba(255, 255, 255, 0.5);
-    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25);
-    border-radius: 50%;
-    border: none;
-    margin: 0 4px;
-    padding: 0;
-    outline: none;
-    transition: background-color 0.3s ease-out;
-    cursor: pointer;
-  }
-
-  .slick-active button {
-    background-color: #fff;
+  &:hover {
+    color: $honey;
   }
 }
 
-/* GlideJS */
+/* GlideJS bullets */
 .glide__bullets {
   z-index: 100;
   position: absolute;
@@ -84,6 +109,7 @@
   margin: 0;
   text-align: center;
   top: 15px;
+
   @include atMedium {
     top: 50px;
   }

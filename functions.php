@@ -50,7 +50,7 @@ function pageBanner($args = []) {
         if (is_post_type_archive('pastry_case')) {
 
             // Archive hero image
-            $args['photo'] = get_theme_file_uri('/images/chocolatier-banner.jpg');
+            $args['photo'] = get_theme_file_uri('/images/macaron-new.jpg');
 
         } elseif (is_singular('pastry_case') && has_post_thumbnail()) {
 
@@ -65,7 +65,7 @@ function pageBanner($args = []) {
         } else {
 
             // Global fallback
-            $args['photo'] = get_theme_file_uri('/images/chocolatier-banner.jpg');
+            $args['photo'] = get_theme_file_uri('/images/macaron-new.jpg');
         }
     }
 
@@ -115,11 +115,11 @@ function pastry_theme_files() {
     ));
 
     // Google Fonts
-    wp_enqueue_style(
-        'custom-google-fonts',
-        'https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap',
-        array(),
-        null
+  wp_enqueue_style(
+    'custom-google-fonts',
+    'https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap',
+    array(),
+    null
     );
 
 

@@ -1,0 +1,218 @@
+.homepage-sections {
+  background-color: $cream;
+  padding: 0;
+}
+
+.homepage-section {
+  padding: 4rem 0;
+
+  .container {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+}
+
+.section-label {
+  display: block;
+  font-family: "Raleway", sans-serif;
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: $terracotta;
+  margin-bottom: 2rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid $honey;
+}
+
+.section-divider {
+  width: 100%;
+  height: 1px;
+  background-color: rgba($terracotta, 0.15);
+}
+
+.section-link {
+  display: inline-block;
+  margin-top: 2rem;
+  font-family: "Raleway", sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  color: $honey;
+  text-decoration: none;
+  text-transform: uppercase;
+
+  &:hover {
+    color: $terracotta;
+  }
+}
+
+.locale-banner {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 600px;
+
+  @include atMedium {
+    flex-direction: row;
+  }
+
+  &__text {
+    background-color: $pistachio;
+    flex: none;
+    width: 100%;
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2rem 2rem 2rem 2rem;
+    gap: 1.5rem;
+
+    @include atMedium {
+      flex: 0 0 35%;
+      width: auto;
+      min-height: unset;
+    }
+
+    .slide-label {
+      color: rgba(255, 255, 255, 0.7);
+    }
+  }
+
+  &__headline {
+    font-family: "Cormorant Garamond", serif;
+    font-weight: 300;
+    font-size: 3rem;
+    color: #fff;
+    line-height: 1.1;
+    margin: 0;
+  }
+
+  .slide-link {
+    color: #fff;
+    border-bottom-color: rgba(255, 255, 255, 0.5);
+
+    &:hover {
+      color: rgba(255, 255, 255, 0.7);
+    }
+  }
+
+  &__image {
+    flex: none;
+    width: 100%;
+    min-height: 400px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    @include atMedium {
+      flex: 1;
+      width: auto;
+      min-height: unset;
+    }
+  }
+}
+
+.artisan-banner {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 350px;
+
+  @include atMedium {
+    flex-direction: row;
+  }
+
+  &__text {
+    background-color: $terracotta;
+    flex: none;
+    width: 100%;
+    min-height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2rem;
+    gap: 1.5rem;
+
+    @include atMedium {
+      flex: 0 0 35%;
+      width: auto;
+      min-height: unset;
+      padding: 3rem;
+    }
+
+    .slide-label {
+      color: rgba(255, 255, 255, 0.7);
+    }
+  }
+
+  &__headline {
+    font-family: "Cormorant Garamond", serif;
+    font-weight: 300;
+    font-size: 2rem;
+    color: #fff;
+    line-height: 1.1;
+    margin: 0;
+
+    @include atMedium {
+      font-size: 3rem;
+    }
+  }
+
+  .slide-link {
+    color: #fff;
+    border-bottom-color: rgba(255, 255, 255, 0.5);
+
+    &:hover {
+      color: rgba(255, 255, 255, 0.7);
+    }
+  }
+
+  &__image {
+    flex: none;
+    width: 100%;
+    min-height: 400px;
+    background-size: contain;
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-color: #f0ebe4;
+
+    @include atMedium {
+      flex: 1;
+      width: auto;
+      min-height: unset;
+      background-size: cover;
+      background-position: center;
+    }
+  }
+}
+
+.dessert-banner {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.4) 100%
+    );
+    z-index: 0;
+  }
+
+  &__content {
+    position: relative;
+    z-index: 1;
+    padding: 3rem;
+  }
+}
