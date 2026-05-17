@@ -1,0 +1,31 @@
+.pastry-split {
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+  margin-bottom: 40px;
+
+  &__image {
+    flex: 0 0 280px;
+
+    img {
+      width: 100%;
+      height: auto;
+      border-radius: 50%;
+      display: block;
+    }
+  }
+
+  &__text {
+    flex: 1;
+  }
+
+  @media (max-width: 640px) {
+    flex-direction: column;
+
+    &__image {
+      flex: unset;
+      width: 200px;
+      margin: 0 auto;
+    }
+  }
+}
