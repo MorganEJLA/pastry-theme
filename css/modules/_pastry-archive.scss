@@ -58,6 +58,43 @@
     margin: 0;
     opacity: 0.85;
   }
+  &__tags {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin: 6px 0 0;
+    padding: 0;
+  }
+
+  &__tag {
+    font-size: 0.65rem;
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    padding: 2px 8px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+}
+// Single page influence tags - standalone
+.influence-tags {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 0;
+  margin: 1rem 0;
+
+  &__tag {
+    font-size: 0.25rem;
+    background: rgba(0, 0, 0, 0.08);
+    color: inherit;
+    padding: 4px 12px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
 }
 
 @media (max-width: 768px) {

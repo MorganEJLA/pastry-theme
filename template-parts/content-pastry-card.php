@@ -18,18 +18,29 @@
       <?php endif; ?>
 
       <div class="pastry-card__overlay">
-        <h3 class="pastry-card__title"><?php the_title(); ?></h3>
+    <h3 class="pastry-card__title"><?php the_title(); ?></h3>
 
-        <?php
-        $related_locales = get_field('related_locales');
-        if (!empty($related_locales)) {
-          $locale_name = get_the_title($related_locales[0]);
-        } else {
-          $locale_name = '';
-        }
-        ?>
-        <p class="pastry-card__meta"><?php echo esc_html($locale_name); ?></p>
-      </div>
+    <?php
+    $related_locales = get_field('related_locales');
+    if (!empty($related_locales)) {
+        $locale_name = get_the_title($related_locales[0]);
+    } else {
+        $locale_name = '';
+    }
+    ?>
+    <p class="pastry-card__meta"><?php echo esc_html($locale_name); ?></p>
+
+    <?php
+      $influences = get_the_terms(get_the_ID(), 'cultural_influence');
+        if ($influences && !is_wp_error($influences)) : ?>
+          <ul class="pastry-card__tags">
+            <?php foreach ($influences as $term) : ?>
+              <li class="pastry-card__tag"><?php echo esc_html($term->name); ?></li>
+            <?php endforeach; ?>
+          </ul>
+    <?php endif; ?>
+
+</div>
     </div>
 
   </a>

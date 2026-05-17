@@ -1652,6 +1652,11 @@ body.admin-bar .search-overlay {
     font-size: 1.15rem;
   }
 }
+.generic-content .regional-roots-heading {
+  font-family: "Raleway Condensed", sans-serif !important;
+  font-size: 1rem;
+  font-weight: 300;
+}
 @media (min-width: 960px) {
   .full-width-split {
     display: flex;
@@ -2209,6 +2214,40 @@ body.admin-bar .search-overlay {
   margin: 0;
   opacity: 0.85;
 }
+.pastry-card__tags {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin: 6px 0 0;
+  padding: 0;
+}
+.pastry-card__tag {
+  font-size: 0.65rem;
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  padding: 2px 8px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.influence-tags {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 0;
+  margin: 1rem 0;
+}
+.influence-tags__tag {
+  font-size: 0.25rem;
+  background: rgba(0, 0, 0, 0.08);
+  color: inherit;
+  padding: 4px 12px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
 @media (max-width: 768px) {
   .pastry-cards {
     grid-template-columns: repeat(2, 1fr);
@@ -2344,7 +2383,7 @@ body.admin-bar .search-overlay {
 .locale-banner__headline {
   font-family: "Cormorant Garamond", serif;
   font-weight: 300;
-  font-size: 3rem;
+  font-size: 2rem;
   color: #fff;
   line-height: 1.1;
   margin: 0;
@@ -2365,6 +2404,7 @@ body.admin-bar .search-overlay {
   background-position: top center;
   background-repeat: no-repeat;
   background-color: #f0ebe4;
+  position: relative;
 }
 @media (min-width: 960px) {
   .locale-banner__image {
@@ -2375,6 +2415,20 @@ body.admin-bar .search-overlay {
     background-size: cover;
     background-position: center;
   }
+}
+.locale-banner__image .photo-credit {
+  position: absolute;
+  bottom: 8px;
+  left: 10px;
+  font-size: 0.65rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+.locale-banner__image .photo-credit a {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+}
+.locale-banner__image .photo-credit a:hover {
+  color: #fff;
 }
 .artisan-banner {
   overflow: hidden;
@@ -2483,4 +2537,21 @@ body.admin-bar .search-overlay {
   .artisan-banner__image {
     width: auto;
   }
+}
+.dessert-banner {
+  position: relative;
+}
+.dessert-banner .photo-credit {
+  position: absolute;
+  bottom: 8px;
+  left: 10px;
+  font-size: 0.65rem;
+  color: rgba(133, 129, 129, 0.7);
+}
+.dessert-banner .photo-credit a {
+  color: rgba(133, 129, 129, 0.7);
+  text-decoration: none;
+}
+.dessert-banner .photo-credit a:hover {
+  color: #fff;
 }

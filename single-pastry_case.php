@@ -41,11 +41,22 @@ while (have_posts()) {
         <div class="generic-content">
             <?php the_content(); ?>
 
+
+            <?php
+            $influences = get_the_terms(get_the_ID(), 'cultural_influence');
+            if ($influences && !is_wp_error($influences)) : ?>
+                <ul class="influence-tags">
+                    <?php foreach ($influences as $term) : ?>
+                        <li class="influence-tags__tag"><?php echo esc_html($term->name); ?></li>
+                    <?php endforeach; ?>
+                </ul>
+            <?php endif; ?>
+
             <?php
             // Regional Roots section (like on the Artisans single)
             if ($relatedLocales) {
                 echo '<hr class="section-break">';
-                echo '<h3 class="headline headline--smaller">Regional Roots</h3>';
+                echo '<h3 class="regional-roots-heading">Regional Roots</h3>';
                 echo '<ul class="link-list min-list">';
 
                 foreach ($relatedLocales as $locale) { ?>
