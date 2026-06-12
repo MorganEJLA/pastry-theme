@@ -1260,6 +1260,14 @@ body.login {
 .page-banner__intro p {
   margin: 0;
 }
+.page-banner__photo-credit {
+  position: absolute;
+  bottom: 8px;
+  right: 12px;
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0;
+}
 .hero-slider {
   position: relative;
   overflow: hidden;
@@ -1872,6 +1880,16 @@ body.admin-bar .search-overlay {
   max-height: 900px;
   overflow: hidden;
   margin-bottom: 3rem;
+}
+.locale-hero .slide-photo-credit {
+  position: absolute;
+  bottom: 8px;
+  right: 12px;
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.95);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+  margin: 0;
+  z-index: 11;
 }
 /* Make all Swiper layers fill .locale-hero */
 .locale-hero .swiper,

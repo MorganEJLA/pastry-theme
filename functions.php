@@ -91,6 +91,12 @@ function pageBanner($args = []) {
           </div>
         <?php endif; ?>
       </div>
+      <?php
+  $thumbnail_id = get_post_thumbnail_id();
+  $caption = wp_get_attachment_caption($thumbnail_id);
+  if ($caption) : ?>
+    <p class="page-banner__photo-credit"><?php echo esc_html($caption); ?></p>
+  <?php endif; ?>
     </div>
 
     <?php
@@ -172,218 +178,37 @@ add_action('pre_get_posts', 'pastry_adjust_queries');
 // =================================================================================
 // 6. SEARCH SYNONYMS (e.g. Azores → Açores)
 // =================================================================================
+require get_theme_file_path('/inc/search-synonyms.php');
+
 add_filter('posts_search', 'pastry_synonym_search');
 
 function pastry_synonym_search($search) {
 
-    global $wpdb;
+  global $wpdb;
 
-    if (is_search() && !empty(get_query_var('s'))) {
-        $original_query = get_query_var('s'); // Get the original term from the URL
-        $sanitized_query = sanitize_text_field($original_query);
-        // Add more synonyms as needed
-        $synonyms = array(
+  if (is_search() && !empty(get_query_var('s'))) {
+    $original_query  = get_query_var('s');
+    $sanitized_query = sanitize_text_field($original_query);
 
-    // Portugal + Islands
-            'acores' => 'açores',
-            'azores' => 'açores',
-            'açores' => 'açores', // reinforce
-            'madeira' => 'madeira',
-            'funchal' => 'funchal',
+    $synonyms        = pastry_get_search_synonyms();
+    $replacement_term = $original_query;
 
-            // France + Overseas
-            'guadeloupe' => 'guadeloupe',
-            'guadaloupe' => 'guadeloupe', // common typo
-            'martinique' => 'martinique',
-            'réunion' => 'reunion',
-            'reunion' => 'réunion',
-
-            // Spain
-            'espana' => 'españa',
-            'españa' => 'españa',
-            'cataluna' => 'cataluña',
-            'catalunya' => 'cataluña',
-
-            // Italy + Sicily + Sardinia
-            'sicilia' => 'sicily',
-            'sicily' => 'sicilia',
-            'sardegna' => 'sardinia',
-            'sardinia' => 'sardegna',
-
-            // Brazil
-            'brasil' => 'brazil',
-
-            // Caribbean
-            'haiti' => 'haiti',
-            'jamacia' => 'jamaica',
-            'jamaica' => 'jamaica',
-            'trinidad' => 'trinidad',
-            'tobago' => 'trinidad & tobago',
-
-            // Mexico & Latin America
-            'mexico' => 'méxico',
-            'méxico' => 'méxico',
-            'el salvador' => 'el salvador',
-            'salvador' => 'el salvador',
-            'honduras' => 'honduras',
-            'guatemala' => 'guatemala',
-            'panama' => 'panamá',
-            'panamá' => 'panamá',
-            'colombia' => 'colombia',
-            'columbia' => 'colombia', // common misspelling
-            'ecuador' => 'ecuador',
-            'venezuela' => 'venezuela',
-            'argentina' => 'argentina',
-            'paraguay' => 'paraguay',
-            'uruguay' => 'uruguay',
-            'chile' => 'chile',
-
-            // Africa
-            'cape verde' => 'cabo verde',
-            'cabo verde' => 'cabo verde',
-            'ivory coast' => "côte d'ivoire",
-            'cote divoire' => "côte d'ivoire",
-            "côte d'ivoire" => "côte d'ivoire",
-            'senegal' => 'sénégal',
-            'sénégal' => 'sénégal',
-            'kenya' => 'kenya',
-            'nigeria' => 'nigeria',
-            'ghana' => 'ghana',
-            'ethiopia' => 'ethiopia',
-            'mali' => 'mali',
-            'seychelles' => 'seychelles',
-            'mauritania' => 'mauritania',
-            'somalia' => 'somalia',
-            'angola' => 'angola',
-            'south africa' => 'south africa',
-
-            // Middle East
-            'turkiye' => 'türkiye',
-            'turkey' => 'türkiye',
-            'türkiye' => 'türkiye',
-            'uae' => 'united arab emirates',
-            'dubai' => 'dubai',
-            'palestine' => 'palestine',
-            'israel' => 'israel',
-            'syria' => 'syria',
-            'lebanon' => 'lebanon',
-
-            // Asia
-            'china' => 'china',
-            'beijing' => 'beijing',
-            'shanghai' => 'shanghai',
-            'guangzhou' => 'guangzhou',
-            'hong kong' => 'hong kong',
-            'japan' => 'japan',
-            'tokyo' => 'tokyo',
-            'osaka' => 'osaka',
-            'korea' => 'south korea',
-            'south korea' => 'south korea',
-            'seoul' => 'seoul',
-            'taiwan' => 'taiwan',
-            'vietnam' => 'vietnam',
-            'thailand' => 'thailand',
-            'indonesia' => 'indonesia',
-            'malaysia' => 'malaysia',
-            'philippines' => 'philippines',
-            'india' => 'india',
-            'nepal' => 'nepal',
-            'sri lanka' => 'sri lanka',
-
-            // Europe (general + diaspora)
-            'deutschland' => 'germany',
-            'germany' => 'germany',
-            'schweiz' => 'switzerland',
-            'switzerland' => 'switzerland',
-            'österreich' => 'austria',
-            'austria' => 'austria',
-            'hungary' => 'hungary',
-            'poland' => 'poland',
-            'ukraine' => 'ukraine',
-            'belarus' => 'belarus',
-            'scotland' => 'scotland',
-            'wales' => 'wales',
-            'ireland' => 'ireland',
-            'england' => 'england',
-            'uk' => 'united kingdom',
-            'united kingdom' => 'united kingdom',
-            'netherlands' => 'netherlands',
-            'holland' => 'netherlands',
-            'denmark' => 'denmark',
-            'sweden' => 'sweden',
-            'norway' => 'norway',
-            'iceland' => 'iceland',
-            'montenegro' => 'montenegro',
-            'albania' => 'albania',
-            'croatia' => 'croatia',
-            'romania' => 'romania',
-            'czech republic' => 'czechia',
-            'czechia' => 'czechia',
-
-            // North America
-            'usa' => 'united states',
-            'united states' => 'united states',
-            'america' => 'united states',
-            'new york' => 'new york',
-            'brooklyn' => 'brooklyn',
-            'los angeles' => 'los angeles',
-            'la' => 'los angeles',
-            'chicago' => 'chicago',
-            'atlanta' => 'atlanta',
-            'harlem' => 'harlem',
-            'canada' => 'canada',
-            'quebec' => 'québec',
-            'québec' => 'québec',
-            'first nations' => 'first nations',
-            'alaska' => 'alaska',
-
-            // Oceania
-            'australia' => 'australia',
-            'tasmania' => 'tasmania',
-            'new zealand' => 'new zealand',
-            'maori' => 'maori',
-
-            // Diaspora (Jewish, Caribbean, African diaspora etc.)
-            'ashkenazi' => 'ashkenazi jewish',
-            'sephardi' => 'sephardi jewish',
-            'mizrahim' => 'mizrahi jewish',
-            'mizrahic' => 'mizrahi jewish',
-            'gullah' => 'gullah geechee',
-            'geechee' => 'gullah geechee',
-            'creole' => 'creole',
-            'cajun' => 'cajun'
-        );
-
-        // Find the correct replacement term
-        $replacement_term = $original_query;
-        if (array_key_exists(strtolower($sanitized_query), $synonyms)) {
-            $replacement_term = $synonyms[strtolower($sanitized_query)];
-        }
-
-        // If the original term is different from the preferred term (i.e., we have a synonym)
-        if ($original_query !== $replacement_term) {
-
-            // 1. Find the search fragment in the SQL string. It looks like:
-            // AND ((($wpdb->posts.post_title LIKE '%{$original_query}%') OR ...))
-
-            // 2. Escape the terms for SQL safety
-            $original_like = '%' . $wpdb->esc_like($original_query) . '%';
-            $replacement_like = '%' . $wpdb->esc_like($replacement_term) . '%';
-
-
-            // The default search condition to find/replace:
-            $search_pattern = "LIKE '{$original_like}'";
-
-            // The replacement search condition that includes both terms:
-            $search_replacement = "LIKE '{$original_like}' OR {$wpdb->posts}.post_title LIKE '{$replacement_like}' OR {$wpdb->posts}.post_content LIKE '{$replacement_like}'";
-
-
-            $search = str_replace($search_pattern, $search_replacement, $search);
-
-        }
+    if (array_key_exists(strtolower($sanitized_query), $synonyms)) {
+      $replacement_term = $synonyms[strtolower($sanitized_query)];
     }
 
-    return $search; // Always return the (potentially modified) SQL search fragment
+    if ($original_query !== $replacement_term) {
+      $original_like    = '%' . $wpdb->esc_like($original_query) . '%';
+      $replacement_like = '%' . $wpdb->esc_like($replacement_term) . '%';
+
+      $search_pattern     = "LIKE '{$original_like}'";
+      $search_replacement = "LIKE '{$original_like}' OR {$wpdb->posts}.post_title LIKE '{$replacement_like}' OR {$wpdb->posts}.post_content LIKE '{$replacement_like}'";
+
+      $search = str_replace($search_pattern, $search_replacement, $search);
+    }
+  }
+
+  return $search;
 }
 
 function pastry_related_desserts_prompt() {

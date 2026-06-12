@@ -1,10 +1,12 @@
 <?php
 
+require get_theme_file_path('/inc/search-synonyms.php');
+
 add_action('rest_api_init', 'pastryRegisterSearch');
 
 function pastryRegisterSearch() {
   register_rest_route('pastry/v1', 'search', array(
-    'methods' => WP_REST_Server::READABLE,
+    'methods'  => WP_REST_Server::READABLE,
     'callback' => 'pastrySearchResults'
   ));
 }
@@ -14,62 +16,68 @@ function pastrySearchResults($data) {
   // =========================================================
   // 1. SANITIZE & NORMALIZE SEARCH TERM
   // =========================================================
-  $term = sanitize_text_field($data['term']);
+  $term       = sanitize_text_field($data['term']);
   $searchTerm = strtolower($term);
 
-  // Synonym dictionary (add as many as you want)
-  $synonyms = array(
-    'acores'  => 'azores',
-    'açores'  => 'azores',
-    'saint domingue' => 'haiti',
-    'sao paulo' => 'são paulo',
-    'sao tome' => 'são tomé',
-    'belem' => 'belém',
-    'mexico city' => 'ciudad de méxico',
-    'malasada' => 'malasadas',
-  );
-
   // Apply synonym replacement
-  foreach ($synonyms as $variant => $canonical) {
-    if ($searchTerm === $variant) {
-      $searchTerm = $canonical;
+  $synonyms = pastry_get_search_synonyms();
+  if (array_key_exists($searchTerm, $synonyms)) {
+    $searchTerm = $synonyms[$searchTerm];
+  }
+
+  // =========================================================
+  // 2. RUN TWO QUERIES AND MERGE RESULTS
+  // =========================================================
+
+  // Query 1: standard title/content search
+  $mainQuery = new WP_Query(array(
+    'post_type' => array('post', 'page', 'event', 'pastry_case', 'locale', 'journal'),
+    's'         => $searchTerm,
+  ));
+
+  // Query 2: search_aliases meta field
+  $aliasQuery = new WP_Query(array(
+    'post_type'  => array('post', 'page', 'event', 'pastry_case', 'locale', 'journal'),
+    'meta_query' => array(
+      array(
+        'key'     => 'search_aliases',
+        'value'   => $searchTerm,
+        'compare' => 'LIKE'
+      )
+    )
+  ));
+
+  // Merge, avoid duplicates
+  $seen_ids     = array();
+  $merged_posts = array();
+
+  foreach (array_merge($mainQuery->posts, $aliasQuery->posts) as $post) {
+    if (!in_array($post->ID, $seen_ids)) {
+      $seen_ids[]     = $post->ID;
+      $merged_posts[] = $post;
     }
   }
 
   // =========================================================
-  // 2. RUN WP QUERY USING NORMALIZED TERM
+  // 3. BUILD RESULTS ARRAY
   // =========================================================
-  $mainQuery = new WP_Query(array(
-  'post_type' => array('post', 'page', 'event', 'pastry_case', 'locale', 'journal'),
-  's' => $searchTerm,  // normalized term
-  'meta_query' => array(
-    'relation' => 'OR',
-    array(
-      'key' => 'search_aliases',
-      'value' => $searchTerm,
-      'compare' => 'LIKE'
-    )
-  )
-));
-
-
   $results = array(
     'generalInfo' => array(),
-    'event' => array(),
+    'event'       => array(),
     'pastry_case' => array(),
-    'locale' => array(),
-    'journal' => array()
+    'locale'      => array(),
+    'journal'     => array()
   );
 
-  while ($mainQuery->have_posts()) {
-    $mainQuery->the_post();
+  foreach ($merged_posts as $post) {
+    setup_postdata($post);
 
-    $postType = get_post_type();
+    $postType = get_post_type($post);
 
     $postData = array(
-      'title' => get_the_title(),
-      'permalink' => get_permalink(),
-      'postType' => $postType
+      'title'     => get_the_title($post),
+      'permalink' => get_permalink($post),
+      'postType'  => $postType
     );
 
     switch ($postType) {
@@ -77,24 +85,22 @@ function pastrySearchResults($data) {
       case 'page':
         $results['generalInfo'][] = $postData;
         break;
-
       case 'event':
         $results['event'][] = $postData;
         break;
-
       case 'pastry_case':
         $results['pastry_case'][] = $postData;
         break;
-
       case 'locale':
         $results['locale'][] = $postData;
         break;
-
       case 'journal':
         $results['journal'][] = $postData;
         break;
     }
   }
+
+  wp_reset_postdata();
 
   return $results;
 }
