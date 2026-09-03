@@ -117,8 +117,9 @@ function pastry_theme_files() {
     );
 
     wp_localize_script('main-pastry-js', 'pastryData', array(
-        'root_url' => get_site_url()
-    ));
+    'root_url'       => get_site_url(),
+    'searchSynonyms' => pastry_get_search_synonyms()
+));
 
     // Google Fonts
   wp_enqueue_style(
@@ -171,7 +172,9 @@ function pastry_adjust_queries($query){
         $query->set('order', 'ASC');
         $query->set('posts_per_page', -1);
     }
-
+     if (!is_admin() && $query->is_main_query() && is_tax('cultural_influence')) {
+        $query->set('posts_per_page', -1);
+    }
 
 }
 add_action('pre_get_posts', 'pastry_adjust_queries');
@@ -218,6 +221,21 @@ function pastry_related_desserts_prompt() {
 }
 add_action('pastry_after_case_content', 'pastry_related_desserts_prompt');
 
+// =================================================================================
+// 7. AI DISCLOSURE NOTICE
+// =================================================================================
+add_filter('the_content', 'pastry_ai_disclosure_notice');
 
+function pastry_ai_disclosure_notice(string $content): string {
+  if (is_singular(array('post', 'page', 'pastry_case', 'locale', 'journal', 'professor')) && in_the_loop() && is_main_query()) {
+    $notice = '<div class="ai-disclosure-notice">
+      <p><em>This content was created with the assistance of AI. Sources are currently being reviewed.</em></p>
+    </div>';
+
+    $content .= $notice;
+  }
+
+  return $content;
+}
 
 ?>

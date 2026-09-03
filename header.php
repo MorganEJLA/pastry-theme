@@ -21,9 +21,9 @@
 <?php } ?>
         <div class="container">
 
-        <h1 class="school-logo-text float-left">
+        <p class="school-logo-text float-left">
           <a href="<?php echo site_url()?>">Universo da Doçura</a>
-        </h1>
+</p>
 
     <!-- MOBILE search icon (shows on small screens, hidden at >= 960px) -->
         <a href="<?php echo esc_url(site_url('/search')); ?>"

@@ -27,6 +27,16 @@ class Search {
     this.closeButton.addEventListener("click", () => this.closeOverlay());
     document.addEventListener("keydown", (e) => this.keyPressDispatcher(e));
     this.searchField.addEventListener("keyup", () => this.typingLogic());
+
+    // Handle clicks on "Did you mean" suggestion buttons (event delegation,
+    // since these buttons are injected dynamically into resultsDiv)
+    this.resultsDiv?.addEventListener("click", (e) => {
+      const btn = e.target.closest(".search-suggestion");
+      if (!btn) return;
+      this.searchField.value = btn.dataset.term;
+      this.previousValue = "";
+      this.getResults();
+    });
   }
 
   // Typing logic
@@ -50,6 +60,58 @@ class Search {
     this.previousValue = this.searchField.value;
   }
 
+  // Render a single results section. Returns "" (renders nothing) when
+  // there are no items, so empty categories no longer show a
+  // "No X match that search" line.
+  renderSection(title, items) {
+    if (!items.length) return "";
+
+    return `
+      <h2 class="search-overlay__section-title">${title}</h2>
+      <ul class="link-list min-list">
+        ${items
+          .map(
+            (item) => `
+              <li>
+                <a href="${item.permalink}">${item.title}</a>
+              </li>
+            `,
+          )
+          .join("")}
+      </ul>
+    `;
+  }
+
+  // "Did you mean" suggestions, shown only when there are zero results
+  // across every category. Pulls from pastryData.searchSynonyms, which
+  // needs to be localized from PHP (see note below).
+  renderSuggestions(term) {
+    const q = term.toLowerCase().trim();
+    const synonyms = (window.pastryData && pastryData.searchSynonyms) || {};
+
+    const close = Object.keys(synonyms).filter(
+      (key) => key.includes(q) || q.includes(key),
+    );
+
+    if (!close.length) return "";
+
+    // De-dupe in case multiple keys map to the same canonical term
+    const canonicalTerms = [...new Set(close.map((key) => synonyms[key]))];
+
+    return `
+      <p class="search-overlay__suggestions">
+        Did you mean:
+        ${canonicalTerms
+          .slice(0, 3)
+          .map(
+            (term) =>
+              `<button type="button" class="search-suggestion" data-term="${term}">${term}</button>`,
+          )
+          .join(", ")}?
+      </p>
+    `;
+  }
+
   // Fetch Results
   async getResults() {
     try {
@@ -59,101 +121,39 @@ class Search {
 
       const results = response.data;
 
+      const hasAnyResults =
+        results.generalInfo.length ||
+        results.pastry_case.length ||
+        results.professors.length ||
+        results.locale.length ||
+        results.journal.length;
+
+      if (!hasAnyResults) {
+        this.resultsDiv.innerHTML = `
+          <div class="search-overlay__empty">
+            <p>No results for "${this.searchField.value}".</p>
+            ${this.renderSuggestions(this.searchField.value)}
+          </div>
+        `;
+        this.isSpinnerVisible = false;
+        return;
+      }
+
       this.resultsDiv.innerHTML = `
         <div class="row">
 
-          <!-- GENERAL INFO -->
           <div class="one-third">
-            <h2 class="search-overlay__section-title">General Information</h2>
-            ${
-              results.generalInfo.length
-                ? '<ul class="link-list min-list">'
-                : "<p>No general information matches that search.</p>"
-            }
-              ${results.generalInfo
-                .map(
-                  (item) => `
-                    <li>
-                      <a href="${item.permalink}">${item.title}</a>
-                    </li>
-                  `,
-                )
-                .join("")}
-            ${results.generalInfo.length ? "</ul>" : ""}
+            ${this.renderSection("General Information", results.generalInfo)}
+            ${this.renderSection("Artisans", results.professors)}
           </div>
 
-          <!-- FEATURED DESSERTS -->
           <div class="one-third">
-            <h2 class="search-overlay__section-title">Featured Desserts</h2>
-            ${
-              results.event.length
-                ? '<ul class="link-list min-list">'
-                : "<p>No featured desserts match that search.</p>"
-            }
-              ${results.event
-                .map(
-                  (item) => `
-                    <li>
-                      <a href="${item.permalink}">${item.title}</a>
-                    </li>
-                  `,
-                )
-                .join("")}
-            ${results.event.length ? "</ul>" : ""}
-
-            <h2 class="search-overlay__section-title">Pastry Case</h2>
-            ${
-              results.pastry_case.length
-                ? '<ul class="link-list min-list">'
-                : "<p>No pastry case items match that search.</p>"
-            }
-              ${results.pastry_case
-                .map(
-                  (item) => `
-                    <li>
-                      <a href="${item.permalink}">${item.title}</a>
-                    </li>
-                  `,
-                )
-                .join("")}
-            ${results.pastry_case.length ? "</ul>" : ""}
+            ${this.renderSection("Pastry Case", results.pastry_case)}
           </div>
 
-          <!-- LOCALES + JOURNAL -->
           <div class="one-third">
-            <h2 class="search-overlay__section-title">Locales</h2>
-            ${
-              results.locale.length
-                ? '<ul class="link-list min-list">'
-                : "<p>No locales match that search.</p>"
-            }
-              ${results.locale
-                .map(
-                  (item) => `
-                    <li>
-                      <a href="${item.permalink}">${item.title}</a>
-                    </li>
-                  `,
-                )
-                .join("")}
-            ${results.locale.length ? "</ul>" : ""}
-
-            <h2 class="search-overlay__section-title">Journal</h2>
-            ${
-              results.journal.length
-                ? '<ul class="link-list min-list">'
-                : "<p>No journal entries match that search.</p>"
-            }
-              ${results.journal
-                .map(
-                  (item) => `
-                    <li>
-                      <a href="${item.permalink}">${item.title}</a>
-                    </li>
-                  `,
-                )
-                .join("")}
-            ${results.journal.length ? "</ul>" : ""}
+            ${this.renderSection("Locales", results.locale)}
+            ${this.renderSection("Journal", results.journal)}
           </div>
 
         </div>
