@@ -6,7 +6,7 @@
   padding: 10px 16px;
 
   &__inner {
-    color: $pistachio;
+    color: $pistachio-dark;
     font-weight: 600;
     font-size: 0.75rem;
     white-space: nowrap;
@@ -14,7 +14,7 @@
     text-overflow: ellipsis;
 
     a {
-      color: $pistachio;
+      color: $pistachio-dark;
       text-decoration: none;
 
       &:hover {

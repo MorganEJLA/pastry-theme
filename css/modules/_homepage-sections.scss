@@ -49,6 +49,7 @@
 }
 
 .locale-banner {
+  position: relative; // NEW — positioning context for the stretched link
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -77,7 +78,7 @@
     }
 
     .slide-label {
-      color: rgba(255, 255, 255, 0.7);
+      color: #fff;
     }
   }
 
@@ -96,6 +97,15 @@
 
     &:hover {
       color: rgba(255, 255, 255, 0.7);
+    }
+
+    &::after {
+      // NEW — stretches the click area to the whole banner (nearest
+      // position:relative ancestor is .locale-banner itself)
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
     }
   }
 
@@ -135,7 +145,7 @@
       right: 10px;
       font-size: 0.65rem;
       color: rgba(255, 255, 255, 0.7);
-      z-index: 1;
+      z-index: 2; // bumped from 1 — must stay above .slide-link::after
 
       a {
         color: rgba(255, 255, 255, 0.7);
@@ -150,6 +160,7 @@
 }
 
 .artisan-banner {
+  position: relative; // NEW
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -181,7 +192,7 @@
     }
 
     .slide-label {
-      color: rgba(255, 255, 255, 0.7);
+      color: #fff;
     }
   }
 
@@ -205,6 +216,14 @@
     &:hover {
       color: rgba(255, 255, 255, 0.7);
     }
+
+    &::after {
+      // NEW
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+    }
   }
 
   &__image {
@@ -226,6 +245,7 @@
     }
   }
 }
+
 .dessert-banner {
   background-size: cover;
   background-position: center;
@@ -244,15 +264,28 @@
       rgba(0, 0, 0, 0) 0%,
       rgba(0, 0, 0, 0.4) 100%
     );
-    z-index: 0;
+    z-index: -1;
   }
 
   &__content {
-    position: relative;
-    z-index: 1;
+    // REMOVED position: relative + z-index: 1 — they were trapping the
+    // stretched link inside this content box instead of the full banner.
+    // Normal in-flow content still paints above the negative z-index
+    // gradient automatically, so removing this doesn't change how it looks.
     padding: 3rem;
   }
+
+  .slide-link {
+    &::after {
+      // NEW — now correctly stretches to .dessert-banner itself
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+    }
+  }
 }
+
 .locale-banner,
 .artisan-banner {
   &__text,
@@ -263,17 +296,20 @@
       width: auto;
     }
   }
-}
-.dessert-banner {
-  position: relative;
 
+  &__image {
+    position: relative; // only __image needs this — __text must stay static
+  }
+}
+
+.dessert-banner {
   .photo-credit {
     position: absolute;
     bottom: 8px;
     right: 10px;
     font-size: 0.65rem;
     color: rgba(133, 129, 129, 0.7);
-    z-index: 1;
+    z-index: 2;
 
     a {
       color: rgba(133, 129, 129, 0.7);

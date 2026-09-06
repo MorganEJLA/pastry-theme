@@ -107,6 +107,14 @@ function pageBanner($args = []) {
 // =====================================================================
 // 3. ENQUEUE SCRIPTS AND STYLES
 // =====================================================================
+function pastry_jquery_footer() {
+    if ( ! is_admin() ) {
+        wp_deregister_script( 'jquery' );
+        wp_register_script( 'jquery', includes_url( '/js/jquery/jquery.min.js' ), array(), null, true );
+    }
+}
+add_action( 'wp_enqueue_scripts', 'pastry_jquery_footer', 1 );
+
 function pastry_theme_files() {
     wp_enqueue_script(
         'main-pastry-js',
